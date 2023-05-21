@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import World from './World';
+import Viewboard from './Viewboard';
+
+
+const App = () => {
+
+    return (
+      <div className="flex w-full h-screen min-h-screen bg-black">
+      <div className="w-1/3  overflow-y-hidden m-3">
+        <Viewboard />
+      </div>
+        <div className="bg-white w-2/3  overflow-y-hidden">
+          <World />
+        </div>
+      </div>
+    );
+
 }
 
 export default App;
