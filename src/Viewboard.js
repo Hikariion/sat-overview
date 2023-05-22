@@ -1,15 +1,47 @@
-import { Card } from 'flowbite-react';
+import { Tabs } from 'flowbite-react';
+import Summary from './Summary';
+import { useEffect, useRef } from 'react';
+import {useTabStatusStore} from './Store';
 
 export default function Viewboard(props) {
+
+  const tabsRef = useRef();
+  const activeTab = useTabStatusStore(state => state.activeTab);
+  const setActiveTab = useTabStatusStore(state => state.setActiveTab);
+
+  useEffect(() => {
+    tabsRef.current.setActiveTab(activeTab);
+  }, [activeTab]);
+  
+
   return (
-    <Card href="#" className='w-full'>
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Noteworthy technology acquisitions 2021
-      </h5>
-      <p className="font-normal text-gray-700 dark:text-gray-400">
-        Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-      </p>
-    </Card>
+    <div className='bg-neutral-100 shadow-sm w-full min-h-full max-h-full overflow-auto'>
+      <Tabs.Group
+        aria-label="tabs"
+        style="default"
+        ref={tabsRef}
+        onActiveTabChange={tab => setActiveTab(tab)}
+        className='sticky top-0 bg-neutral-100 p-0'
+      >
+        <Tabs.Item
+          active={true}
+          title="Summary"
+          className='p-0'
+        >
+         <Summary />
+
+        </Tabs.Item>
+        <Tabs.Item title="Jobs">
+          Dashboard content
+        </Tabs.Item>
+        <Tabs.Item title="Satellites">
+          Settings content
+        </Tabs.Item>
+        <Tabs.Item title="About">
+          Created by zbw.
+        </Tabs.Item>
+      </Tabs.Group>
+    </div>
   );
 
 }

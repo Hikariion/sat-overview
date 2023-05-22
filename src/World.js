@@ -3,21 +3,24 @@ import ReactResizeDetector from 'react-resize-detector';
 import Globe from "react-globe.gl";
 import * as THREE from 'three';
 import {twoline2satrec, propagate, gstime, eciToEcf, eciToGeodetic, radiansToDegrees} from 'satellite.js';
-
+import {useFocusSatellite, useTabStatusStore} from './Store';
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 
 const EARTH_RADIUS_KM = 6371; // km
 const SAT_SIZE = 300; // km
 const TIME_STEP = 1000; // per frame
-const TLE_URL = 'http://localhost:9091/tles/custom1.txt'
+const TLE_URL = 'http://localhost:9091/tles/custom1-gen.txt'
 
 export default function World(props) {
     const globeEl = useRef();
     const parentRef = useRef();
     const [satData, setSatData] = useState();
+    const [satInfo, setSatInfo] = useState([]);
     const [globeRadius, setGlobeRadius] = useState();
-    const [selectedObject, setSelectedObject] = useState();
+    const focusedSatellite = useFocusSatellite(state => state.focusedSatellite);
+    const setFocusedSatellite = useFocusSatellite(state => state.focus);
     const [time, setTime] = useState(new Date());
+    const setActiveTab = useTabStatusStore(state => state.setActiveTab);
 
     useEffect(() => {
       let t = new Date();
@@ -36,7 +39,7 @@ export default function World(props) {
       };
   
       frameTicker();
-    }, []);
+    }, [time]);
 
     useEffect(() => {
       // load satellite data
@@ -52,8 +55,9 @@ export default function World(props) {
         // exclude those that can't be propagated
         .filter(d => !!propagate(d.satrec, new Date()).position)
         .slice(0, 1500);
-
+        setSatInfo(satData.map(d => d.name));
         setSatData(satData);
+        
       });
     }, []);
 
@@ -73,39 +77,69 @@ export default function World(props) {
         }
         return d;
       });
-    }, [satData, time]);
+    }, [time]);
+
+
+
+    const meshes = useMemo(() => {
+      if (!globeRadius) return undefined;
+      const materials = {
+        default: new THREE.MeshLambertMaterial({ color: 'palegreen', transparent: true, opacity: 0.7 }),
+        active: new THREE.MeshLambertMaterial({ color: 'yellow', transparent: true, opacity: 0.7 }),
+      }
+      const satGeometry =  new THREE.OctahedronGeometry(SAT_SIZE * globeRadius / EARTH_RADIUS_KM / 2, 0);
+      let result = {}
+      satInfo.forEach((satName) => {
+        result[satName] = {
+          default: new THREE.Mesh(satGeometry, materials.default),
+          active: new THREE.Mesh(satGeometry, materials.active),
+        }
+      })
+      console.log("meshes", result)
+      return result;
+    }, [globeRadius, satInfo]);
 
     const satObject = useCallback(
       (data) => {
-        if (!globeRadius) return undefined;
-        const satGeometry = new THREE.OctahedronGeometry(SAT_SIZE * globeRadius / EARTH_RADIUS_KM / 2, 0);
-        let satMaterial = new THREE.MeshLambertMaterial({ color: 'palegreen', transparent: true, opacity: 0.7 });
-        if (selectedObject && selectedObject.name === data.name) {
-           satMaterial = new THREE.MeshLambertMaterial({ color: 'yellow', transparent: true, opacity: 0.7 });
+        if (!meshes) return undefined;
+        if (data.name === focusedSatellite) {
+          return meshes[data.name].active;
         }
-        return new THREE.Mesh(satGeometry, satMaterial);
+
+        return meshes[data.name].default;
       },
-      [globeRadius, selectedObject],
+      [focusedSatellite, meshes],
     );
     
     const onObjectClick = useCallback(
       (obj) => {
         console.log("clicked", obj)
-        setSelectedObject(obj);
+        setFocusedSatellite(obj.name);
+        setActiveTab(2);
         globeEl.current.pointOfView({ lat: obj.lat, lng: obj.lng, altitude: 1.5}, 500);
       },
-      [],
+      [setActiveTab, setFocusedSatellite],
     );
     const onGlobeClick = useCallback(
         () => {
-        setSelectedObject(null);
+        setFocusedSatellite("");
+        setActiveTab(0);
         globeEl.current.pointOfView({ altitude: 3.5 }, 500);
-        },[]);
+        },[setActiveTab, setFocusedSatellite]);
 
     useEffect(() => {
       setGlobeRadius(globeEl.current.getGlobeRadius());
       globeEl.current.pointOfView({ altitude: 3.5 });
     }, []);
+
+    useEffect(() => {
+      if (focusedSatellite !== "") {
+        const obj = objectsData.find(d => d.name === focusedSatellite);
+        if (obj) {
+          globeEl.current.pointOfView({ lat: obj.lat, lng: obj.lng, altitude: 1.5}, 500);
+        }
+      }
+    }, [focusedSatellite]);
 
 
     return (
