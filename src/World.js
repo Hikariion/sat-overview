@@ -24,7 +24,7 @@ export default function World(props) {
 
     useEffect(() => {
       let t = new Date();
-      let currentUTC = new Date(t.getTime() + time.getTimezoneOffset() * 60 * 1000);
+      let currentUTC = new Date(t.getTime() + t.getTimezoneOffset() * 60 * 1000);
   
       const frameTicker = () => {
         // console.log("frameTicker")
@@ -39,7 +39,7 @@ export default function World(props) {
       };
   
       frameTicker();
-    }, [time]);
+    }, []);
 
     useEffect(() => {
       // load satellite data
@@ -77,7 +77,7 @@ export default function World(props) {
         }
         return d;
       });
-    }, [time]);
+    }, [time, satData]);
 
 
 

@@ -66,6 +66,7 @@ export default function Summary(props) {
     const clusterData = useClusterDataStore(state => state.clusterData);
     const peerRelation = useClusterDataStore(state => state.peerRelation);
     const fetchClusterData = useClusterDataStore(state => state.fetch);
+    const fetchNodeNames = useClusterDataStore(state => state.fetchNodeNames);
     const CLUSTER_DATA_URL = "http://localhost:9091/server/satellite.json";
 
     useEffect(() => {

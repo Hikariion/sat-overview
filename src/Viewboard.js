@@ -2,6 +2,8 @@ import { Tabs } from 'flowbite-react';
 import Summary from './Summary';
 import { useEffect, useRef } from 'react';
 import {useTabStatusStore} from './Store';
+import Satellite from './Satellite';
+import Jobs from './Jobs';
 
 export default function Viewboard(props) {
 
@@ -32,10 +34,10 @@ export default function Viewboard(props) {
 
         </Tabs.Item>
         <Tabs.Item title="Jobs">
-          Dashboard content
+          <Jobs />
         </Tabs.Item>
         <Tabs.Item title="Satellites">
-          Settings content
+          <Satellite />
         </Tabs.Item>
         <Tabs.Item title="About">
           Created by zbw.
