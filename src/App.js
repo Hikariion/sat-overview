@@ -1,11 +1,25 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 
 
 import World from './World';
 import Viewboard from './Viewboard';
+import { useClusterDataStore } from './Store';
 
 
 const App = () => {
+
+    const fetchNodeNames = useClusterDataStore(state => state.fetchNodeNames);
+    const fetchClusterData = useClusterDataStore(state => state.fetch);
+    const CLUSTER_DATA_URL = "http://localhost:9091/server/satellite.json";
+    useEffect(() => {
+      fetchClusterData(CLUSTER_DATA_URL);
+        
+      fetchNodeNames(CLUSTER_DATA_URL);
+    }, []);
+
+
+
+
 
     return (
       <div className="flex w-full h-screen min-h-screen max-h-screen bg-black">

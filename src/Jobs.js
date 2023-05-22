@@ -42,13 +42,7 @@ export default function Jobs(props) {
     const show = useWindowToggle(state => state.show);
     const openWindow = useWindowToggle(state => state.open);
     const [windowInfo, setWindowInfo] = useState({});
-    const nodeNames = useClusterDataStore(state => state.nodeNames);
-    const fetchNodeNames = useClusterDataStore(state => state.fetchNodeNames);
     const setFocusedSatellite = useFocusSatellite(state => state.focus);
-
-    useEffect(() => {
-        fetchNodeNames();
-    }, []);
 
     const onPodButtonClick = (pod) => {
         console.log(pod)

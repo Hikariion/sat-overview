@@ -116,7 +116,7 @@ export default function World(props) {
         console.log("clicked", obj)
         setFocusedSatellite(obj.name);
         setActiveTab(2);
-        globeEl.current.pointOfView({ lat: obj.lat, lng: obj.lng, altitude: 1.5}, 500);
+        globeEl.current.pointOfView({ lat: obj.lat, lng: obj.lng, altitude: 2}, 500);
       },
       [setActiveTab, setFocusedSatellite],
     );
@@ -124,19 +124,19 @@ export default function World(props) {
         () => {
         setFocusedSatellite("");
         setActiveTab(0);
-        globeEl.current.pointOfView({ altitude: 3.5 }, 500);
+        globeEl.current.pointOfView({ altitude: 3 }, 500);
         },[setActiveTab, setFocusedSatellite]);
 
     useEffect(() => {
       setGlobeRadius(globeEl.current.getGlobeRadius());
-      globeEl.current.pointOfView({ altitude: 3.5 });
+      globeEl.current.pointOfView({ altitude: 3 });
     }, []);
 
     useEffect(() => {
       if (focusedSatellite !== "") {
         const obj = objectsData.find(d => d.name === focusedSatellite);
         if (obj) {
-          globeEl.current.pointOfView({ lat: obj.lat, lng: obj.lng, altitude: 1.5}, 500);
+          globeEl.current.pointOfView({ lat: obj.lat, lng: obj.lng, altitude: 2}, 500);
         }
       }
     }, [focusedSatellite]);
