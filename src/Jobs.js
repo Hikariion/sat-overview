@@ -127,6 +127,9 @@ export default function Jobs(props) {
     });
 
     const lowLatServiceJobInfo = Object.values(lowLatServiceJobs).map((job) => {
+        if (job.path === undefined) {
+            return (<div></div>);
+        }
         const pathNodes = job.path.map((node, index) => {
             const realNode = job.pathNodes[index.toString()]
 

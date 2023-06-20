@@ -133,11 +133,13 @@ const useNodeDataStore = create((set) => ({
         const data3 = await response3.json();
         const pods = data3['items'];
         for (let pod of pods) {
-            node["pods"].push({
-                "name": pod["metadata"]["name"],
-                "phase": pod["status"]["phase"],
-                "nodeName": NODE_NAMES[pod["spec"]["nodeName"]],
-            });
+            if (pod["status"]["phase"] === "Running") {
+                node["pods"].push({
+                    "name": pod["metadata"]["name"],
+                    "phase": pod["status"]["phase"],
+                    "nodeName": NODE_NAMES[pod["spec"]["nodeName"]],
+                });
+            }
         }
         set({node});
     },
@@ -223,7 +225,9 @@ const useJobDataStore = create((set) => ({
                 if (mp["metadata"]["name"] in resultLls) {
                     data = resultLls[mp["metadata"]["name"]];
                     data['path'] = mp['spec']['path'];
-                    data['pathNodes'] = {...data['pathNodes'], ...mp['status']['currentPathNodes']}
+                    if (mp['status'] !== undefined) {
+                        data['pathNodes'] = {...data['pathNodes'], ...mp['status']['currentPathNodes']}
+                    }
                 } else {
                     continue
                 }
