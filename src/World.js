@@ -41,24 +41,45 @@ export default function World(props) {
       frameTicker();
     }, []);
 
+    // load satellite data from backend
+    // useEffect(() => {
+    //   // load satellite data
+    //   fetch(TLE_URL, {mode:"cors"}).then(r => r.text()).then(rawData => {
+    //     const tleData = rawData.replace(/\r/g, '')
+    //       .split(/\n(?=[^12])/)
+    //       .filter(d => d)
+    //       .map(tle => tle.split('\n'));
+    //     const satData = tleData.map(([name, ...tle]) => ({
+    //       satrec: twoline2satrec(...tle),
+    //       name: name.trim().replace(/^0 /, '')
+    //     }))
+    //     // exclude those that can't be propagated
+    //     .filter(d => !!propagate(d.satrec, new Date()).position)
+    //     .slice(0, 1500);
+    //     setSatInfo(satData.map(d => d.name));
+    //     setSatData(satData);
+    //
+    //   });
+    // }, []);
+
     useEffect(() => {
-      // load satellite data
-      fetch(TLE_URL, {mode:"cors"}).then(r => r.text()).then(rawData => {
-        const tleData = rawData.replace(/\r/g, '')
-          .split(/\n(?=[^12])/)
-          .filter(d => d)
-          .map(tle => tle.split('\n'));
-        const satData = tleData.map(([name, ...tle]) => ({
-          satrec: twoline2satrec(...tle),
-          name: name.trim().replace(/^0 /, '')
-        }))
-        // exclude those that can't be propagated
-        .filter(d => !!propagate(d.satrec, new Date()).position)
-        .slice(0, 1500);
-        setSatInfo(satData.map(d => d.name));
-        setSatData(satData);
-        
-      });
+        // load satellite data
+        fetch('/custom1-gen.txt').then(r => r.text()).then(rawData => {
+            const tleData = rawData.replace(/\r/g, '')
+                .split(/\n(?=[^12])/)
+                .filter(d => d)
+                .map(tle => tle.split('\n'));
+            const satData = tleData.map(([name, ...tle]) => ({
+                satrec: twoline2satrec(...tle),
+                name: name.trim().replace(/^0 /, '')
+            }))
+                // exclude those that can't be propagated
+                .filter(d => !!propagate(d.satrec, new Date()).position)
+                .slice(0, 1500);
+            setSatInfo(satData.map(d => d.name));
+            setSatData(satData);
+
+        });
     }, []);
 
     const objectsData = useMemo(() => {

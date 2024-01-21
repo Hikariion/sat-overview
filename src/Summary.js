@@ -88,7 +88,7 @@ export default function Summary(props) {
     return (
         <div className="max-h-full w-full h-full overflow-y-auto">
         <Card className="w-full h-20 my-3">
-            Cluster Status
+            卫星分组信息
         </Card>
 
         {clusterInfoAccordion}

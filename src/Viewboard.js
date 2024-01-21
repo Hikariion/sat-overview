@@ -27,20 +27,20 @@ export default function Viewboard(props) {
       >
         <Tabs.Item
           active={true}
-          title="Summary"
+          title="概览"
           className='p-0'
         >
          <Summary />
 
         </Tabs.Item>
-        <Tabs.Item title="Jobs">
+        <Tabs.Item title="任务信息">
           <Jobs />
         </Tabs.Item>
-        <Tabs.Item title="Satellites">
+        <Tabs.Item title="卫星信息">
           <Satellite />
         </Tabs.Item>
-        <Tabs.Item title="About">
-          Created by zbw.
+        <Tabs.Item title="关于">
+          Edit by qiutb.
         </Tabs.Item>
       </Tabs.Group>
     </div>

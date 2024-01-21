@@ -183,13 +183,13 @@ export default function Jobs(props) {
             </div>
             <Accordion flush={true} collapseAll={true}>
                 <Accordion.Panel>
-                    <Accordion.Title>Compute Jobs</Accordion.Title>
+                    <Accordion.Title>离线处理任务</Accordion.Title>
                     <Accordion.Content>
                         {computeJobInfo}
                     </Accordion.Content>
                 </Accordion.Panel>
                 <Accordion.Panel>
-                    <Accordion.Title>Low Latency Service Jobs</Accordion.Title>
+                    <Accordion.Title>在线流式计算任务</Accordion.Title>
                     <Accordion.Content>
                         {lowLatServiceJobInfo}
                     </Accordion.Content>

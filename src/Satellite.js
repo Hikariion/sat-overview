@@ -17,44 +17,28 @@ export default function Satellite(props) {
     // show pods in this satellite
     return (
         <div>
-            <div>Satellite: {focusedSatellite}</div>
+            <div><b>卫星ID:</b> {focusedSatellite}</div>
             {focusedSatellite !== "" && (() => {
                 return (
                     <div>
-                        <div><p className="font-bold">allocatable:</p>
-                            <div>
-                                cpu: {currentNode.allocatable && currentNode.allocatable.cpu} mCPU
-                            </div>
-                            <div>
-                                mem: {currentNode.allocatable && (currentNode.allocatable.memory / 1024)} MB
-                            </div>
+                        <div><p className="font-bold">所属分组:</p>
+                            {/*<div>*/}
+                            {/*    cpu: {currentNode.allocatable && currentNode.allocatable.cpu} mCPU*/}
+                            {/*</div>*/}
+                            {/*<div>*/}
+                            {/*    mem: {currentNode.allocatable && (currentNode.allocatable.memory / 1024)} MB*/}
+                            {/*</div>*/}
                         </div>
-                        <div><p className="font-bold">request:</p>
-                            <div>
-                                cpu: {currentNode.request && currentNode.request.cpu} mCPU
-                            </div>
-                            <div>
-                                mem: {currentNode.request && (currentNode.request.memory / 1024)} MB
-                            </div>
-                        </div>
-                        <div><p className="font-bold">limit:</p>
-                            <div>
-                                cpu: {currentNode.limit && currentNode.limit.cpu} mCPU
-                            </div>
-                            <div>
-                                mem: {currentNode.limit && (currentNode.limit.memory / 1024)} MB
-                            </div>
-                        </div>
-                        <div><p className="font-bold">Pods:</p>
-                            {currentNode.pods && (() => {
-                                return currentNode.pods.map((pod) => {
-                                    return (
-                                        <div>
-                                            <Button>{pod.name}</Button>
-                                        </div>
-                                    );
-                                })
-                            })()}
+                        <div><p className="font-bold">待处理任务:</p>
+                            {/*{currentNode.pods && (() => {*/}
+                            {/*    return currentNode.pods.map((pod) => {*/}
+                            {/*        return (*/}
+                            {/*            <div>*/}
+                            {/*                <Button>{pod.name}</Button>*/}
+                            {/*            </div>*/}
+                            {/*        );*/}
+                            {/*    })*/}
+                            {/*})()}*/}
                         </div>
                     </div>
 

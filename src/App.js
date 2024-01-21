@@ -8,14 +8,14 @@ import { useClusterDataStore } from './Store';
 
 const App = () => {
 
-    const fetchNodeNames = useClusterDataStore(state => state.fetchNodeNames);
-    const fetchClusterData = useClusterDataStore(state => state.fetch);
-    const CLUSTER_DATA_URL = "http://localhost:9091/server/satellite.json";
-    useEffect(() => {
-      fetchClusterData(CLUSTER_DATA_URL);
-        
-      fetchNodeNames(CLUSTER_DATA_URL);
-    }, []);
+    // const fetchNodeNames = useClusterDataStore(state => state.fetchNodeNames);
+    // const fetchClusterData = useClusterDataStore(state => state.fetch);
+    // const CLUSTER_DATA_URL = "http://localhost:9091/server/satellite.json";
+    // useEffect(() => {
+    //   fetchClusterData(CLUSTER_DATA_URL);
+    //
+    //   fetchNodeNames(CLUSTER_DATA_URL);
+    // }, []);
 
 
 
