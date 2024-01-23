@@ -177,7 +177,7 @@ export default function Jobs(props) {
             <InfoWindow show={show} {...windowInfo} />
             <div className="flex flex-row max-w-full justify-between">
                 <Button onClick={() => fetchJobData()}>
-                    Refresh
+                    刷新
                 </Button>
                 {fetching && <Spinner />}
             </div>
