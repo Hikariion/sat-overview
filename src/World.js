@@ -9,7 +9,8 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 const EARTH_RADIUS_KM = 6371; // km
 const SAT_SIZE = 300; // km
 const TIME_STEP = 1000; // per frame
-const TLE_URL = 'http://localhost:9091/tles/custom1-gen.txt'
+// const TLE_URL = 'http://localhost:9091/tles/custom1-gen.txt'
+const TLE_URL = 'custom1-gen.txt'
 
 export default function World(props) {
     const globeEl = useRef();
