@@ -1,0 +1,889 @@
+{
+  "name": "custom1",
+  "clusters": {
+    "custom1-cluster-0": {
+      "name": "custom1-cluster-0",
+      "url": "https://192.168.103.130:41261",
+      "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6Img4ME1RczAwMmVfOEI2Z2Y0ZHdacUJZMDhFQ0JlcGVqT2hSSkFhX2hYRTAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InNhdGVsbGl0ZS1kZWZhdWx0LXNlY3JldCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJzYXRlbGxpdGUtZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjhlMTBmODAzLWE4ZDItNDc3Yy1hNmFmLTk3MWJlZTgyMzBmOCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OnNhdGVsbGl0ZS1kZWZhdWx0In0.RC0jm6aVdVsCBuyGSTZhp2UlvRgxzKXjeVT4ba5B0SHnHrcNJJIxhhbtIPQPmIBJdB8PDLfUdUqdyy9fnzSbLXNrcmRUAareowL5zSI2TSllEYIx8GvHtPJOORk-4P0u6w9IxDUdo_ZewQfssCuxMN8qtqdAOS6wE13wVraJMDHSnfnV5XUZhkH6q2cNURsJPOvL-4TM36NG5PqoecL4HcKwOw8Omkk7pWVu4x6-_cMbgePbbCjJU_ZzGZfmw1RhswlvjZ62c5MTvNNHF_QYpi-bTlrml37M2-a8LXfNUO8jNE02hPwZCy9dPdy2CIzB1Va-36yEiBmnOBkTMhaw3w",
+      "clusterId": "custom1-cluster-0",
+      "central": "custom1-sat-0-0",
+      "satellites": [
+        {
+          "name": "custom1-sat-0-0",
+          "plane": 0,
+          "index": 0,
+          "satelliteId": "custom1-sat-0-0"
+        },
+        {
+          "name": "custom1-sat-0-1",
+          "plane": 0,
+          "index": 1,
+          "satelliteId": "custom1-sat-0-1"
+        },
+        {
+          "name": "custom1-sat-0-2",
+          "plane": 0,
+          "index": 2,
+          "satelliteId": "custom1-sat-0-2"
+        },
+        {
+          "name": "custom1-sat-0-3",
+          "plane": 0,
+          "index": 3,
+          "satelliteId": "custom1-sat-0-3"
+        },
+        {
+          "name": "custom1-sat-0-4",
+          "plane": 0,
+          "index": 4,
+          "satelliteId": "custom1-sat-0-4"
+        },
+        {
+          "name": "custom1-sat-0-18",
+          "plane": 0,
+          "index": 18,
+          "satelliteId": "custom1-sat-0-18"
+        },
+        {
+          "name": "custom1-sat-0-19",
+          "plane": 0,
+          "index": 19,
+          "satelliteId": "custom1-sat-0-19"
+        },
+        {
+          "name": "custom1-sat-1-0",
+          "plane": 1,
+          "index": 0,
+          "satelliteId": "custom1-sat-1-0"
+        },
+        {
+          "name": "custom1-sat-1-1",
+          "plane": 1,
+          "index": 1,
+          "satelliteId": "custom1-sat-1-1"
+        },
+        {
+          "name": "custom1-sat-1-2",
+          "plane": 1,
+          "index": 2,
+          "satelliteId": "custom1-sat-1-2"
+        },
+        {
+          "name": "custom1-sat-1-3",
+          "plane": 1,
+          "index": 3,
+          "satelliteId": "custom1-sat-1-3"
+        },
+        {
+          "name": "custom1-sat-1-4",
+          "plane": 1,
+          "index": 4,
+          "satelliteId": "custom1-sat-1-4"
+        },
+        {
+          "name": "custom1-sat-1-18",
+          "plane": 1,
+          "index": 18,
+          "satelliteId": "custom1-sat-1-18"
+        },
+        {
+          "name": "custom1-sat-1-19",
+          "plane": 1,
+          "index": 19,
+          "satelliteId": "custom1-sat-1-19"
+        },
+        {
+          "name": "custom1-sat-2-0",
+          "plane": 2,
+          "index": 0,
+          "satelliteId": "custom1-sat-2-0"
+        },
+        {
+          "name": "custom1-sat-2-1",
+          "plane": 2,
+          "index": 1,
+          "satelliteId": "custom1-sat-2-1"
+        },
+        {
+          "name": "custom1-sat-2-2",
+          "plane": 2,
+          "index": 2,
+          "satelliteId": "custom1-sat-2-2"
+        },
+        {
+          "name": "custom1-sat-4-0",
+          "plane": 4,
+          "index": 0,
+          "satelliteId": "custom1-sat-4-0"
+        },
+        {
+          "name": "custom1-sat-4-1",
+          "plane": 4,
+          "index": 1,
+          "satelliteId": "custom1-sat-4-1"
+        },
+        {
+          "name": "custom1-sat-4-2",
+          "plane": 4,
+          "index": 2,
+          "satelliteId": "custom1-sat-4-2"
+        },
+        {
+          "name": "custom1-sat-5-0",
+          "plane": 5,
+          "index": 0,
+          "satelliteId": "custom1-sat-5-0"
+        },
+        {
+          "name": "custom1-sat-5-1",
+          "plane": 5,
+          "index": 1,
+          "satelliteId": "custom1-sat-5-1"
+        },
+        {
+          "name": "custom1-sat-5-2",
+          "plane": 5,
+          "index": 2,
+          "satelliteId": "custom1-sat-5-2"
+        },
+        {
+          "name": "custom1-sat-5-3",
+          "plane": 5,
+          "index": 3,
+          "satelliteId": "custom1-sat-5-3"
+        },
+        {
+          "name": "custom1-sat-5-4",
+          "plane": 5,
+          "index": 4,
+          "satelliteId": "custom1-sat-5-4"
+        },
+        {
+          "name": "custom1-sat-5-18",
+          "plane": 5,
+          "index": 18,
+          "satelliteId": "custom1-sat-5-18"
+        },
+        {
+          "name": "custom1-sat-5-19",
+          "plane": 5,
+          "index": 19,
+          "satelliteId": "custom1-sat-5-19"
+        }
+      ]
+    },
+    "custom1-cluster-1": {
+      "name": "custom1-cluster-1",
+      "url": "https://192.168.103.131:36965",
+      "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImwzMFNUb0FRdkJpN3F5cjJlR1BRRVphcTI1dE50ejRIVmdQR0F0aExzTkUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InNhdGVsbGl0ZS1kZWZhdWx0LXNlY3JldCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJzYXRlbGxpdGUtZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjExN2YzYzUxLTRlNTMtNDgyNy04YzYxLWFkN2FjNWRkNmIwOSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OnNhdGVsbGl0ZS1kZWZhdWx0In0.RLyhNvxx_5AhHVSgqp7AU73dazoEnrySZFPpdIYaADwCMWWvknyiFLoq-WKetXtlwjW2a5tzn7T50cfcengv-GIGGRgSqAwYWfKqjafDx5AMJGlmBrCyJ9HJFIMGrEigTjKEsC5vqMlBTyqI6F-4hNZf7hu3hZfjgVbl4-UpBLkB--rkOAleQT3IcXACRrbGkQN2992xU-PyH0evONGlNavcUIJGry2anr27wlz_PgsYJn5vGuKAMOxnSqJQF4ZNevrb9uu5SSehqBukrowKKSWKYhgxQbhOI3BpbhJik5S5X-pIo6BB406cx9NUK02rr9EexNqVfaz_nQR--L13BQ",
+      "clusterId": "custom1-cluster-1",
+      "central": "custom1-sat-3-7",
+      "satellites": [
+        {
+          "name": "custom1-sat-2-3",
+          "plane": 2,
+          "index": 3,
+          "satelliteId": "custom1-sat-2-3"
+        },
+        {
+          "name": "custom1-sat-2-4",
+          "plane": 2,
+          "index": 4,
+          "satelliteId": "custom1-sat-2-4"
+        },
+        {
+          "name": "custom1-sat-2-5",
+          "plane": 2,
+          "index": 5,
+          "satelliteId": "custom1-sat-2-5"
+        },
+        {
+          "name": "custom1-sat-2-6",
+          "plane": 2,
+          "index": 6,
+          "satelliteId": "custom1-sat-2-6"
+        },
+        {
+          "name": "custom1-sat-2-7",
+          "plane": 2,
+          "index": 7,
+          "satelliteId": "custom1-sat-2-7"
+        },
+        {
+          "name": "custom1-sat-2-8",
+          "plane": 2,
+          "index": 8,
+          "satelliteId": "custom1-sat-2-8"
+        },
+        {
+          "name": "custom1-sat-2-9",
+          "plane": 2,
+          "index": 9,
+          "satelliteId": "custom1-sat-2-9"
+        },
+        {
+          "name": "custom1-sat-2-10",
+          "plane": 2,
+          "index": 10,
+          "satelliteId": "custom1-sat-2-10"
+        },
+        {
+          "name": "custom1-sat-3-2",
+          "plane": 3,
+          "index": 2,
+          "satelliteId": "custom1-sat-3-2"
+        },
+        {
+          "name": "custom1-sat-3-3",
+          "plane": 3,
+          "index": 3,
+          "satelliteId": "custom1-sat-3-3"
+        },
+        {
+          "name": "custom1-sat-3-4",
+          "plane": 3,
+          "index": 4,
+          "satelliteId": "custom1-sat-3-4"
+        },
+        {
+          "name": "custom1-sat-3-5",
+          "plane": 3,
+          "index": 5,
+          "satelliteId": "custom1-sat-3-5"
+        },
+        {
+          "name": "custom1-sat-3-6",
+          "plane": 3,
+          "index": 6,
+          "satelliteId": "custom1-sat-3-6"
+        },
+        {
+          "name": "custom1-sat-3-7",
+          "plane": 3,
+          "index": 7,
+          "satelliteId": "custom1-sat-3-7"
+        },
+        {
+          "name": "custom1-sat-3-8",
+          "plane": 3,
+          "index": 8,
+          "satelliteId": "custom1-sat-3-8"
+        },
+        {
+          "name": "custom1-sat-3-9",
+          "plane": 3,
+          "index": 9,
+          "satelliteId": "custom1-sat-3-9"
+        },
+        {
+          "name": "custom1-sat-3-10",
+          "plane": 3,
+          "index": 10,
+          "satelliteId": "custom1-sat-3-10"
+        },
+        {
+          "name": "custom1-sat-4-3",
+          "plane": 4,
+          "index": 3,
+          "satelliteId": "custom1-sat-4-3"
+        },
+        {
+          "name": "custom1-sat-4-4",
+          "plane": 4,
+          "index": 4,
+          "satelliteId": "custom1-sat-4-4"
+        },
+        {
+          "name": "custom1-sat-4-5",
+          "plane": 4,
+          "index": 5,
+          "satelliteId": "custom1-sat-4-5"
+        },
+        {
+          "name": "custom1-sat-4-6",
+          "plane": 4,
+          "index": 6,
+          "satelliteId": "custom1-sat-4-6"
+        },
+        {
+          "name": "custom1-sat-4-7",
+          "plane": 4,
+          "index": 7,
+          "satelliteId": "custom1-sat-4-7"
+        },
+        {
+          "name": "custom1-sat-4-8",
+          "plane": 4,
+          "index": 8,
+          "satelliteId": "custom1-sat-4-8"
+        }
+      ]
+    },
+    "custom1-cluster-2": {
+      "name": "custom1-cluster-2",
+      "url": "https://192.168.103.132:38175",
+      "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IllMWlFuZ2dMYkZsaUhOc1pYWTdtR2ItMXlaTkhLSFJtVGEtUDBBcVhWamMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InNhdGVsbGl0ZS1kZWZhdWx0LXNlY3JldCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJzYXRlbGxpdGUtZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjM5MGUzY2FmLTJiNmEtNGI2Yi04Mjc1LTA4OTIzNjkxOTkxYiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OnNhdGVsbGl0ZS1kZWZhdWx0In0.Y9YncpnN4WLQ9fUulM5kr-gDfAol2K_0y_lcG_vJOk7TW-0yBFCYj6xvkWH1t78tiH-320WCJN5dW0w9A3WSD0eVA0AA9HlzuCVachPvyIvnl5d1qSKD4ixYCsY9NvxZqqnVINxG-tbYrAa5RNMzqQndD7_Dl4DrTxrfTjEvnCFXFUsV7v67gjcRmvG7a4k_8bQvIxWGFXisSm0-DRgcFX7OnHtYE0E-h_HIlG5kiEeFgM86kpN3FPTcGSnlBqGWBwZyABbU_1tcuNqnz-yU3uPEhaxWs92wCAlhdcPrvb67fQXarUgV1kWOgzDGQ0Vwux4ziGoCEBpnL0-Ax7I9ag",
+      "clusterId": "custom1-cluster-2",
+      "central": "custom1-sat-0-15",
+      "satellites": [
+        {
+          "name": "custom1-sat-0-12",
+          "plane": 0,
+          "index": 12,
+          "satelliteId": "custom1-sat-0-12"
+        },
+        {
+          "name": "custom1-sat-0-13",
+          "plane": 0,
+          "index": 13,
+          "satelliteId": "custom1-sat-0-13"
+        },
+        {
+          "name": "custom1-sat-0-14",
+          "plane": 0,
+          "index": 14,
+          "satelliteId": "custom1-sat-0-14"
+        },
+        {
+          "name": "custom1-sat-0-15",
+          "plane": 0,
+          "index": 15,
+          "satelliteId": "custom1-sat-0-15"
+        },
+        {
+          "name": "custom1-sat-0-16",
+          "plane": 0,
+          "index": 16,
+          "satelliteId": "custom1-sat-0-16"
+        },
+        {
+          "name": "custom1-sat-0-17",
+          "plane": 0,
+          "index": 17,
+          "satelliteId": "custom1-sat-0-17"
+        },
+        {
+          "name": "custom1-sat-1-12",
+          "plane": 1,
+          "index": 12,
+          "satelliteId": "custom1-sat-1-12"
+        },
+        {
+          "name": "custom1-sat-1-13",
+          "plane": 1,
+          "index": 13,
+          "satelliteId": "custom1-sat-1-13"
+        },
+        {
+          "name": "custom1-sat-1-14",
+          "plane": 1,
+          "index": 14,
+          "satelliteId": "custom1-sat-1-14"
+        },
+        {
+          "name": "custom1-sat-1-15",
+          "plane": 1,
+          "index": 15,
+          "satelliteId": "custom1-sat-1-15"
+        },
+        {
+          "name": "custom1-sat-1-16",
+          "plane": 1,
+          "index": 16,
+          "satelliteId": "custom1-sat-1-16"
+        },
+        {
+          "name": "custom1-sat-1-17",
+          "plane": 1,
+          "index": 17,
+          "satelliteId": "custom1-sat-1-17"
+        },
+        {
+          "name": "custom1-sat-5-14",
+          "plane": 5,
+          "index": 14,
+          "satelliteId": "custom1-sat-5-14"
+        },
+        {
+          "name": "custom1-sat-5-15",
+          "plane": 5,
+          "index": 15,
+          "satelliteId": "custom1-sat-5-15"
+        },
+        {
+          "name": "custom1-sat-5-16",
+          "plane": 5,
+          "index": 16,
+          "satelliteId": "custom1-sat-5-16"
+        },
+        {
+          "name": "custom1-sat-5-17",
+          "plane": 5,
+          "index": 17,
+          "satelliteId": "custom1-sat-5-17"
+        }
+      ]
+    },
+    "custom1-cluster-3": {
+      "name": "custom1-cluster-3",
+      "url": "https://192.168.103.133:42835",
+      "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkhhNENVanNEMTVhYlJGZlJubWFiR19DT1ZrQXJ1ZXJsWEpsdVNLVTVyMDAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InNhdGVsbGl0ZS1kZWZhdWx0LXNlY3JldCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJzYXRlbGxpdGUtZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImJiZDg4ODY1LWIwMzAtNDZkYi1iZDViLWQ4NGJmZGZiMjZiNCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OnNhdGVsbGl0ZS1kZWZhdWx0In0.Hn34vDRkWmrgAhldOGaKsa2xVMWBzRRlGGHzK5_rNpv-9zEzbMGtJjMyarU1_JGiTmPFXu3-YUvTUpfH_TgD4JGi0HtjHkEaS7GGo2ZEUnKHyRYI7ZTiqHFEmE-ZA4TVxVHbFAG_5-sT4Bu6wNAG8idRWdWKcPp0O29E5YGGB71QhEP030fu1fsY9bIrwfXm0kJjAdrNt8dhAQN_vpfchU7Rvsz3ZUC1DqkS40A83P2qqaDin3NiIDyOZwFxPr9XdeRzuqr4mPyr2G2rzMiLLW-J1P7iDCR-qSUvfAQMSDBHSfMaNOMJbzxIxCLlId_NdpU04KeqaWwgsvGmLbBJGg",
+      "clusterId": "custom1-cluster-3",
+      "central": "custom1-sat-3-17",
+      "satellites": [
+        {
+          "name": "custom1-sat-2-14",
+          "plane": 2,
+          "index": 14,
+          "satelliteId": "custom1-sat-2-14"
+        },
+        {
+          "name": "custom1-sat-2-15",
+          "plane": 2,
+          "index": 15,
+          "satelliteId": "custom1-sat-2-15"
+        },
+        {
+          "name": "custom1-sat-2-16",
+          "plane": 2,
+          "index": 16,
+          "satelliteId": "custom1-sat-2-16"
+        },
+        {
+          "name": "custom1-sat-2-17",
+          "plane": 2,
+          "index": 17,
+          "satelliteId": "custom1-sat-2-17"
+        },
+        {
+          "name": "custom1-sat-2-18",
+          "plane": 2,
+          "index": 18,
+          "satelliteId": "custom1-sat-2-18"
+        },
+        {
+          "name": "custom1-sat-2-19",
+          "plane": 2,
+          "index": 19,
+          "satelliteId": "custom1-sat-2-19"
+        },
+        {
+          "name": "custom1-sat-3-0",
+          "plane": 3,
+          "index": 0,
+          "satelliteId": "custom1-sat-3-0"
+        },
+        {
+          "name": "custom1-sat-3-1",
+          "plane": 3,
+          "index": 1,
+          "satelliteId": "custom1-sat-3-1"
+        },
+        {
+          "name": "custom1-sat-3-14",
+          "plane": 3,
+          "index": 14,
+          "satelliteId": "custom1-sat-3-14"
+        },
+        {
+          "name": "custom1-sat-3-15",
+          "plane": 3,
+          "index": 15,
+          "satelliteId": "custom1-sat-3-15"
+        },
+        {
+          "name": "custom1-sat-3-16",
+          "plane": 3,
+          "index": 16,
+          "satelliteId": "custom1-sat-3-16"
+        },
+        {
+          "name": "custom1-sat-3-17",
+          "plane": 3,
+          "index": 17,
+          "satelliteId": "custom1-sat-3-17"
+        },
+        {
+          "name": "custom1-sat-3-18",
+          "plane": 3,
+          "index": 18,
+          "satelliteId": "custom1-sat-3-18"
+        },
+        {
+          "name": "custom1-sat-3-19",
+          "plane": 3,
+          "index": 19,
+          "satelliteId": "custom1-sat-3-19"
+        },
+        {
+          "name": "custom1-sat-4-16",
+          "plane": 4,
+          "index": 16,
+          "satelliteId": "custom1-sat-4-16"
+        },
+        {
+          "name": "custom1-sat-4-17",
+          "plane": 4,
+          "index": 17,
+          "satelliteId": "custom1-sat-4-17"
+        },
+        {
+          "name": "custom1-sat-4-18",
+          "plane": 4,
+          "index": 18,
+          "satelliteId": "custom1-sat-4-18"
+        },
+        {
+          "name": "custom1-sat-4-19",
+          "plane": 4,
+          "index": 19,
+          "satelliteId": "custom1-sat-4-19"
+        }
+      ]
+    },
+    "custom1-cluster-4": {
+      "name": "custom1-cluster-4",
+      "url": "https://192.168.103.134:41265",
+      "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IndlOTNkX0RRdWRoU3JfNVRHWUl6bFZvaTBrZlR4OXdvRzFjWE9pOEFsLVEifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InNhdGVsbGl0ZS1kZWZhdWx0LXNlY3JldCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJzYXRlbGxpdGUtZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjY0Y2I5MjEwLWE3ZGEtNGU0OC05ZWY1LTRiODc4ZTQ5MjRmZiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OnNhdGVsbGl0ZS1kZWZhdWx0In0.kFxi1nSEDbdkRRpOuc5ecxvU3gsNzr0btjeU7c9ieKNqhGR4YuHoSPEKfzK-ZNpdBd2DfPSIqx1PuC3zM297botHp8azHjkifz4MzZGoSXODP40F37YL8HXG2ZP6n-q2T9s1WxwJeDhzRhKS70cpZb6ICb72dHAOWzdTetizX0xI6SZ4hONT1MgvGArAIi-Z0QJyx8JIbnYadzz0nqzAenlW774SfgshSouzceh0Eit5HtfYv_4dBMc40wDeCdMFGByfyQfI7qn0JEDHxl1pgLgwqmC7DWk-UMchhbZsv0DkM5tH34GpNasgkBs4WBegkc0e-y8AzZHEuwDgWXCyyg",
+      "clusterId": "custom1-cluster-4",
+      "central": "custom1-sat-0-8",
+      "satellites": [
+        {
+          "name": "custom1-sat-0-5",
+          "plane": 0,
+          "index": 5,
+          "satelliteId": "custom1-sat-0-5"
+        },
+        {
+          "name": "custom1-sat-0-6",
+          "plane": 0,
+          "index": 6,
+          "satelliteId": "custom1-sat-0-6"
+        },
+        {
+          "name": "custom1-sat-0-7",
+          "plane": 0,
+          "index": 7,
+          "satelliteId": "custom1-sat-0-7"
+        },
+        {
+          "name": "custom1-sat-0-8",
+          "plane": 0,
+          "index": 8,
+          "satelliteId": "custom1-sat-0-8"
+        },
+        {
+          "name": "custom1-sat-0-9",
+          "plane": 0,
+          "index": 9,
+          "satelliteId": "custom1-sat-0-9"
+        },
+        {
+          "name": "custom1-sat-0-10",
+          "plane": 0,
+          "index": 10,
+          "satelliteId": "custom1-sat-0-10"
+        },
+        {
+          "name": "custom1-sat-0-11",
+          "plane": 0,
+          "index": 11,
+          "satelliteId": "custom1-sat-0-11"
+        },
+        {
+          "name": "custom1-sat-1-5",
+          "plane": 1,
+          "index": 5,
+          "satelliteId": "custom1-sat-1-5"
+        },
+        {
+          "name": "custom1-sat-1-6",
+          "plane": 1,
+          "index": 6,
+          "satelliteId": "custom1-sat-1-6"
+        },
+        {
+          "name": "custom1-sat-1-7",
+          "plane": 1,
+          "index": 7,
+          "satelliteId": "custom1-sat-1-7"
+        },
+        {
+          "name": "custom1-sat-1-8",
+          "plane": 1,
+          "index": 8,
+          "satelliteId": "custom1-sat-1-8"
+        },
+        {
+          "name": "custom1-sat-1-9",
+          "plane": 1,
+          "index": 9,
+          "satelliteId": "custom1-sat-1-9"
+        },
+        {
+          "name": "custom1-sat-1-10",
+          "plane": 1,
+          "index": 10,
+          "satelliteId": "custom1-sat-1-10"
+        },
+        {
+          "name": "custom1-sat-1-11",
+          "plane": 1,
+          "index": 11,
+          "satelliteId": "custom1-sat-1-11"
+        },
+        {
+          "name": "custom1-sat-5-5",
+          "plane": 5,
+          "index": 5,
+          "satelliteId": "custom1-sat-5-5"
+        },
+        {
+          "name": "custom1-sat-5-6",
+          "plane": 5,
+          "index": 6,
+          "satelliteId": "custom1-sat-5-6"
+        },
+        {
+          "name": "custom1-sat-5-7",
+          "plane": 5,
+          "index": 7,
+          "satelliteId": "custom1-sat-5-7"
+        },
+        {
+          "name": "custom1-sat-5-8",
+          "plane": 5,
+          "index": 8,
+          "satelliteId": "custom1-sat-5-8"
+        },
+        {
+          "name": "custom1-sat-5-9",
+          "plane": 5,
+          "index": 9,
+          "satelliteId": "custom1-sat-5-9"
+        },
+        {
+          "name": "custom1-sat-5-10",
+          "plane": 5,
+          "index": 10,
+          "satelliteId": "custom1-sat-5-10"
+        }
+      ]
+    },
+    "custom1-cluster-5": {
+      "name": "custom1-cluster-5",
+      "url": "https://192.168.103.135:44049",
+      "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijd5T2FlZktQQ05ZbTRiYkRHY1FwczFCMEI2dkdmWjU0cUVRSmxRZThtYzgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InNhdGVsbGl0ZS1kZWZhdWx0LXNlY3JldCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJzYXRlbGxpdGUtZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjNmYjM1NDJkLWI3MjUtNDg3NC05NmY5LWFlNjExZDM4ZGY0ZiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OnNhdGVsbGl0ZS1kZWZhdWx0In0.ngH3HOpW4bpI7peN6s47OPSeTYcPSbch_Ko6uawB3-cO496ZcPorUhbbNoY27RmwEUw2QaMdcRNGinyXAtflmDKD1vxitHCkWovKyZPlRNYY9xoeoku24uhdtYCOFb_txEya0-aEo-qJiG6tDuS_-Dl7Y8Pon3nabq2QgqIOEPO1Lpcdg_6RY4LsXz6-5tWVw7C2aQIbsVQb9c-9uEn8J921BnM0V7YveARO7vQGRt3Yf4FXB9yYUSdg4fwBY5knn1p1EIF2alNfmyCV_vnsKq_oP-6sr3c_BtSUDx4FkeTVfpni1CIa5Veq7S_9nlRb7yVETr3TqXG-lYE0UAZntA",
+      "clusterId": "custom1-cluster-5",
+      "central": "custom1-sat-4-12",
+      "satellites": [
+        {
+          "name": "custom1-sat-2-11",
+          "plane": 2,
+          "index": 11,
+          "satelliteId": "custom1-sat-2-11"
+        },
+        {
+          "name": "custom1-sat-2-12",
+          "plane": 2,
+          "index": 12,
+          "satelliteId": "custom1-sat-2-12"
+        },
+        {
+          "name": "custom1-sat-2-13",
+          "plane": 2,
+          "index": 13,
+          "satelliteId": "custom1-sat-2-13"
+        },
+        {
+          "name": "custom1-sat-3-11",
+          "plane": 3,
+          "index": 11,
+          "satelliteId": "custom1-sat-3-11"
+        },
+        {
+          "name": "custom1-sat-3-12",
+          "plane": 3,
+          "index": 12,
+          "satelliteId": "custom1-sat-3-12"
+        },
+        {
+          "name": "custom1-sat-3-13",
+          "plane": 3,
+          "index": 13,
+          "satelliteId": "custom1-sat-3-13"
+        },
+        {
+          "name": "custom1-sat-4-9",
+          "plane": 4,
+          "index": 9,
+          "satelliteId": "custom1-sat-4-9"
+        },
+        {
+          "name": "custom1-sat-4-10",
+          "plane": 4,
+          "index": 10,
+          "satelliteId": "custom1-sat-4-10"
+        },
+        {
+          "name": "custom1-sat-4-11",
+          "plane": 4,
+          "index": 11,
+          "satelliteId": "custom1-sat-4-11"
+        },
+        {
+          "name": "custom1-sat-4-12",
+          "plane": 4,
+          "index": 12,
+          "satelliteId": "custom1-sat-4-12"
+        },
+        {
+          "name": "custom1-sat-4-13",
+          "plane": 4,
+          "index": 13,
+          "satelliteId": "custom1-sat-4-13"
+        },
+        {
+          "name": "custom1-sat-4-14",
+          "plane": 4,
+          "index": 14,
+          "satelliteId": "custom1-sat-4-14"
+        },
+        {
+          "name": "custom1-sat-4-15",
+          "plane": 4,
+          "index": 15,
+          "satelliteId": "custom1-sat-4-15"
+        },
+        {
+          "name": "custom1-sat-5-11",
+          "plane": 5,
+          "index": 11,
+          "satelliteId": "custom1-sat-5-11"
+        },
+        {
+          "name": "custom1-sat-5-12",
+          "plane": 5,
+          "index": 12,
+          "satelliteId": "custom1-sat-5-12"
+        },
+        {
+          "name": "custom1-sat-5-13",
+          "plane": 5,
+          "index": 13,
+          "satelliteId": "custom1-sat-5-13"
+        }
+      ]
+    }
+  },
+  "peerRelations": {
+    "custom1-cluster-0": [
+      {
+        "clusterId": "custom1-cluster-1",
+        "url": "http://192.168.103.131:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-4",
+        "url": "http://192.168.103.134:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-2",
+        "url": "http://192.168.103.132:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-3",
+        "url": "http://192.168.103.133:9001"
+      }
+    ],
+    "custom1-cluster-1": [
+      {
+        "clusterId": "custom1-cluster-0",
+        "url": "http://192.168.103.130:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-3",
+        "url": "http://192.168.103.133:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-5",
+        "url": "http://192.168.103.135:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-4",
+        "url": "http://192.168.103.134:9001"
+      }
+    ],
+    "custom1-cluster-2": [
+      {
+        "clusterId": "custom1-cluster-3",
+        "url": "http://192.168.103.133:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-0",
+        "url": "http://192.168.103.130:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-5",
+        "url": "http://192.168.103.135:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-4",
+        "url": "http://192.168.103.134:9001"
+      }
+    ],
+    "custom1-cluster-3": [
+      {
+        "clusterId": "custom1-cluster-2",
+        "url": "http://192.168.103.132:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-1",
+        "url": "http://192.168.103.131:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-5",
+        "url": "http://192.168.103.135:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-0",
+        "url": "http://192.168.103.130:9001"
+      }
+    ],
+    "custom1-cluster-4": [
+      {
+        "clusterId": "custom1-cluster-5",
+        "url": "http://192.168.103.135:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-0",
+        "url": "http://192.168.103.130:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-1",
+        "url": "http://192.168.103.131:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-2",
+        "url": "http://192.168.103.132:9001"
+      }
+    ],
+    "custom1-cluster-5": [
+      {
+        "clusterId": "custom1-cluster-4",
+        "url": "http://192.168.103.134:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-1",
+        "url": "http://192.168.103.131:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-3",
+        "url": "http://192.168.103.133:9001"
+      },
+      {
+        "clusterId": "custom1-cluster-2",
+        "url": "http://192.168.103.132:9001"
+      }
+    ]
+  }
+}
