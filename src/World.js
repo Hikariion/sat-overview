@@ -151,7 +151,7 @@ export default function World(props) {
         width={width}
         height={height}
         ref={globeEl}
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        globeImageUrl="earth-blue-marble.jpg"
         objectsData={objectsData}
         objectLabel="name"
         objectLat="lat"
