@@ -1,4 +1,5 @@
 import {create} from 'zustand'
+import urlJoin from "url-join";
 
 const CLUSTER_KUBEAPI_URL = {
     "custom1-cluster-0": "http://192.168.103.130:8002",
@@ -19,7 +20,8 @@ const CLUSTER_PEERMAN_URL = {
 }
 
 
-
+const BACKEND_URL = ""
+const satInfoUrl = urlJoin(BACKEND_URL, "satinfo")
 
 const POD_PATH = "/api/v1/namespaces/default/pods";
 const NODE_PATH = "/api/v1/nodes";
@@ -57,59 +59,51 @@ const useClusterDataStore = create((set, get) => ({
         }
         let nodeNames = {};
         let nodeToCluster = {};
-        for (let cluster of clusterData) {
-            const url = CLUSTER_KUBEAPI_URL[cluster["name"]] + NODE_PATH + VK_PARAM;
-            const response = await fetch(url,{mode:"cors"});
-            const data = await response.json();
-            const nodes = data["items"];
-            for (let node of nodes) {
-                const satName = node["metadata"]["labels"]["satellite.satkube.io/id"];
-                nodeNames[node["metadata"]["name"]] = satName;
-                nodeNames[satName] = node["metadata"]["name"];
-                nodeToCluster[satName] = cluster["name"];
-                nodeToCluster[node['metadata']['name']] = cluster["name"];
-            }
-        }
+        // for (let cluster of clusterData) {
+        //     const url = CLUSTER_KUBEAPI_URL[cluster["name"]] + NODE_PATH + VK_PARAM;
+        //     const response = await fetch(url,{mode:"cors"});
+        //     const data = await response.json();
+        //     const nodes = data["items"];
+        //     for (let node of nodes) {
+        //         const satName = node["metadata"]["labels"]["satellite.satkube.io/id"];
+        //         nodeNames[node["metadata"]["name"]] = satName;
+        //         nodeNames[satName] = node["metadata"]["name"];
+        //         nodeToCluster[satName] = cluster["name"];
+        //         nodeToCluster[node['metadata']['name']] = cluster["name"];
+        //     }
+        // }
         set({nodeNames, nodeToCluster});
     }
 }));
 
 
+const useSatelliteDataStore = create((set) => ({
+    satellite: {},
+    fetchSatByName: async (satName) => {
+        console.log(`fetching sat: ${satName} data`);
+
+        // let requestUrl = urlJoin(satInfoUrl, satName);
+        // const response = await fetch(requestUrl)
+        // let data = await response.json()
+
+        let satellite = {
+            name: satName,
+            lat: 0,
+            lon: 0,
+        };
+
+        set({satellite})
+
+    },
+
+}));
 
 const useNodeDataStore = create((set) => ({
     nodesLoad: {},
     clustersLoad: {}, 
     node: {},
-    fetchLoad: async () => {
-        let NODE_NAMES = useClusterDataStore.getState().nodeNames;
-        let clustersLoad = {};
-        let nodesLoad = {};
-        for (let [clusterName, peermanUrl] of Object.entries(CLUSTER_PEERMAN_URL)) {
-            const response = await fetch(peermanUrl+PEERMETRICS_PATH,{mode:"cors"});
-            const data = await response.json();
-            const clusterData = data[clusterName];
-            let clusterLoad = {
-                allocatable: clusterData['allocatable'],
-                request: clusterData['request'],
-                limit: clusterData['limit'],
-            };
-            clustersLoad[clusterName] = clusterLoad;
-            // for (let [nodeName, nodeData] of Object.entries(clusterData.nodeMetrics)) {
-            //     if (!(nodeName in NODE_NAMES)) {
-            //         continue
-            //     }
-            //     let nodeLoad = {
-            //         allocatable: nodeData['allocatable'],
-            //         request: nodeData['request'],
-            //         limit: nodeData['limit'],
-            //     };
-            //     nodesLoad[NODE_NAMES[nodeName]] = nodeLoad;
-            // }
-        }
-        set({nodesLoad, clustersLoad});
-    },
     fetchNode: async (nodeName) => {
-        console.log("fetching node data")
+        console.log(`fetching sat: ${nodeName} data`)
         let NODE_NAMES = useClusterDataStore.getState().nodeNames;
         let NODE_TO_CLUSTER = useClusterDataStore.getState().nodeToCluster;
         const kubeapiUrl = CLUSTER_KUBEAPI_URL[NODE_TO_CLUSTER[nodeName]];
@@ -164,7 +158,7 @@ const useJobDataStore = create((set) => ({
             const response = await fetch(computeJobUrl,{mode:"cors"});
             const data = await response.json();
             computeJobs[clusterName] = data["items"].filter((job) => {
-                return job['metadata']['labels']['computejob.satkube.io/phase'] != "rescheduled";
+                return job['metadata']['labels']['computejob.satkube.io/phase'] !== "rescheduled";
             });
             const response2 = await fetch(lowLatServiceJobUrl,{mode:"cors"});
             const data2 = await response2.json();
@@ -264,12 +258,13 @@ const useJobDataStore = create((set) => ({
     
 }));
 
+
 const useFocusSatellite = create((set) => ({
     focusedSatellite: "",
     focus: (focusedSatellite) => {
-        set({focusedSatellite});
+        set({focusedSatellite: focusedSatellite});
     },
 }));
 
 export {useTabStatusStore, useClusterDataStore, useFocusSatellite, useJobDataStore
-,useNodeDataStore}
+,useNodeDataStore, useSatelliteDataStore}

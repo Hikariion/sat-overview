@@ -14,12 +14,9 @@ const App = () => {
     const CLUSTER_DATA_URL = "satellite.json";
     useEffect(() => {
       fetchClusterData(CLUSTER_DATA_URL);
-        
+
       fetchNodeNames(CLUSTER_DATA_URL);
     }, []);
-
-
-
 
 
     return (
