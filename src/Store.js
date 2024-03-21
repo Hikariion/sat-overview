@@ -20,7 +20,7 @@ const CLUSTER_PEERMAN_URL = {
 }
 
 
-const BACKEND_URL = ""
+const BACKEND_URL = "http://localhost:5000/"
 const satInfoUrl = urlJoin(BACKEND_URL, "satinfo")
 
 const POD_PATH = "/api/v1/namespaces/default/pods";
@@ -82,14 +82,16 @@ const useSatelliteDataStore = create((set) => ({
     fetchSatByName: async (satName) => {
         console.log(`fetching sat: ${satName} data`);
 
-        // let requestUrl = urlJoin(satInfoUrl, satName);
-        // const response = await fetch(requestUrl)
-        // let data = await response.json()
+        let requestUrl = urlJoin(satInfoUrl, satName);
+        const response = await fetch(requestUrl, {mode:"cors"})
+        let data = await response.json()
 
         let satellite = {
             name: satName,
-            lat: 0,
-            lon: 0,
+            lat: data['lat'],
+            lon: data['lon'],
+            time: data['time'],
+            region_load: data['region_load']
         };
 
         set({satellite})
