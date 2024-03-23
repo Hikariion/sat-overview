@@ -32,7 +32,10 @@ export default function Satellite(props) {
         <div>
             <div>
                 <div>
-                    <p className="font-bold">Satellite ID：{focusedSatellite}</p>
+                    <p className="font-bold">Satellite ID：</p>
+                    <div>
+                        {focusedSatellite}
+                    </div>
                 </div>
             </div>
 
@@ -41,7 +44,7 @@ export default function Satellite(props) {
             {focusedSatellite !== "" && (() => {
                 return (
                     <div>
-                        <div><p className="font-bold">星下点坐标:</p>
+                        <div><p className="font-bold">Subpoint Coordinate:</p>
                             <div>
                                 ({currentSat.lat}, {currentSat.lon})
                             </div>
@@ -49,7 +52,7 @@ export default function Satellite(props) {
 
                         <br></br>
 
-                        <div><p className="font-bold">星下点所处时刻:</p>
+                        <div><p className="font-bold">Time of Subpoint:</p>
                             <div>
                                 {currentSat.time}
                             </div>
@@ -57,9 +60,9 @@ export default function Satellite(props) {
 
                         <br></br>
 
-                        <div><p className="font-bold">负载指数:</p>
+                        <div><p className="font-bold">Predicted Load Value:</p>
                             <div>
-                                L: {currentSat.region_load}
+                                {currentSat.region_load}
                             </div>
                         </div>
 
