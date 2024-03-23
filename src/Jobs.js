@@ -1,5 +1,5 @@
 import { Accordion, Button, Card, Spinner } from "flowbite-react";
-import { useJobDataStore, useClusterDataStore, useFocusSatellite } from "./Store";
+import {useJobDataStore, useClusterDataStore, useFocusSatellite, useMyJobDataStore} from "./Store";
 import { HiX } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { create } from "zustand";
@@ -35,7 +35,8 @@ function InfoWindow(props) {
 
 export default function Jobs(props) {
 
-    const fetchJobData = useJobDataStore(state => state.fetch);
+    // const fetchJobData = useJobDataStore(state => state.fetch);
+    const fetchJobData = useMyJobDataStore(state => state.fetch)
     const fetching = useJobDataStore(state => state.fetching);
     const computeJobs = useJobDataStore(state => state.computeJobs);
     const lowLatServiceJobs = useJobDataStore(state => state.lowLatServiceJobs);
@@ -44,20 +45,24 @@ export default function Jobs(props) {
     const [windowInfo, setWindowInfo] = useState({});
     const setFocusedSatellite = useFocusSatellite(state => state.focus);
 
-    const onPodButtonClick = (pod) => {
-        console.log(pod)
+    const unGeoComputeJobs = useMyJobDataStore(state => state.unGeoComputeJobs)
+
+
+    const onPodButtonClick = (container) => {
+        console.log(container)
         openWindow();
         setWindowInfo({
-            title: "Pod Info: " + pod.name,
+            title: "Container Info: " + container.name,
             content: () => {
                 return (
                     <div>
-                        <div>Name: {pod.name}</div>
-                        <div>Phase: {pod.phase}</div>
-                        {pod.nodeName && (() => {
-                            setFocusedSatellite(pod.nodeName)
+                        <div>Name: {container.name}</div>
+                        <div>ImageName: {container.imageName}</div>
+                        <div>FileName: {container.fileName}</div>
+                        {container.nodeName && (() => {
+                            setFocusedSatellite(container.nodeName)
                             return (
-                                <div>Node: {pod.nodeName}</div>
+                                <div>Node: {container.nodeName}</div>
                             );
                         })()}
                     </div>
@@ -95,7 +100,7 @@ export default function Jobs(props) {
             }
         });
     };
-    const computeJobInfo = Object.values(computeJobs).map((job) => {
+    const computeJobInfo = Object.values(unGeoComputeJobs).map((job) => {
         const scheduledPath = job.scheduledPath.map((cluster, index) => {
             return (
                 <div key={job.name + cluster + index.toString()} >
@@ -103,24 +108,23 @@ export default function Jobs(props) {
                 </div>
             );
         });
-        const pods = job.pods.map((pod) => {
+        const containers = job.container.map((container) => {
             return (
-                <div key={pod.name} >
-                    <Button size='xs' onClick={() => onPodButtonClick(pod)}>{pod.name}</Button>
+                <div key={container.name} >
+                    <Button size='xs' onClick={() => onPodButtonClick(container)}>{container.name}</Button>
                 </div>
             );
         });
         return (
             <div key={job.name}>
                 <Card>
-                    <p>Name: {job.name}</p>
-                    <p>Create Time: {job.createTime}</p>
+                    <p>Job Id: {job.jobId}</p>
+                    <p>Create Time(UTC): {job.createTime}</p>
                     <p>Phase: {job.phase}</p>
-                    <p>Cluster {job.cluster}</p>
                     <p>Path: </p>
-                    <div className="flex flex-wrap max-w-full"> {scheduledPath}</div>
-                    <p>Pods: </p>
-                    <div className="flex flex-wrap max-w-full"> {pods}</div>
+                    <div className="flex flex-wrap max-w-full"> {scheduledPath} </div>
+                    <p>Container: </p>
+                    <div className="flex flex-wrap max-w-full"> {containers} </div>
                 </Card>
             </div>
         );
@@ -183,13 +187,14 @@ export default function Jobs(props) {
             </div>
             <Accordion flush={true} collapseAll={true}>
                 <Accordion.Panel>
-                    <Accordion.Title>Compute Jobs</Accordion.Title>
+                    <Accordion.Title>Geo Unsensitive Compute Jobs</Accordion.Title>
                     <Accordion.Content>
                         {computeJobInfo}
                     </Accordion.Content>
                 </Accordion.Panel>
+
                 <Accordion.Panel>
-                    <Accordion.Title>Low Latency Service Jobs</Accordion.Title>
+                    <Accordion.Title>Low Latency Streaming Compute Jobs</Accordion.Title>
                     <Accordion.Content>
                         {lowLatServiceJobInfo}
                     </Accordion.Content>

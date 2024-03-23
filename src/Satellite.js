@@ -34,7 +34,7 @@ export default function Satellite(props) {
                 <div>
                     <p className="font-bold">Satellite ID：</p>
                     <div>
-                        {focusedSatellite}
+                        <p className="times-new-roman">{focusedSatellite}</p>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@ export default function Satellite(props) {
                     <div>
                         <div><p className="font-bold">Subpoint Coordinate:</p>
                             <div>
-                                ({currentSat.lat}, {currentSat.lon})
+                                <p className="times-new-roman">({currentSat.lat}, {currentSat.lon})</p>
                             </div>
                         </div>
 
@@ -54,7 +54,7 @@ export default function Satellite(props) {
 
                         <div><p className="font-bold">Time of Subpoint:</p>
                             <div>
-                                {currentSat.time}
+                                <p className="times-new-roman">{currentSat.time}</p>
                             </div>
                         </div>
 
@@ -62,7 +62,7 @@ export default function Satellite(props) {
 
                         <div><p className="font-bold">Predicted Load Value:</p>
                             <div>
-                                {currentSat.region_load}
+                                <p className="times-new-roman">{currentSat.region_load}</p>
                             </div>
                         </div>
 

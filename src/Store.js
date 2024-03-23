@@ -23,6 +23,7 @@ const CLUSTER_PEERMAN_URL = {
 const BACKEND_URL = "http://localhost:5000/"
 const satInfoUrl = urlJoin(BACKEND_URL, "satinfo")
 
+
 const POD_PATH = "/api/v1/namespaces/default/pods";
 const NODE_PATH = "/api/v1/nodes";
 const NODE_NAME_PARAM = "?labelSelector=satellite.satkube.io%2Fid%3D";
@@ -141,6 +142,56 @@ const useNodeDataStore = create((set) => ({
     },
 }));
 
+const useMyJobDataStore = create((set) => ({
+    unGeoComputeJobs: {},
+    lowLatStreamingJobs: {},
+
+
+
+    fetch: async() => {
+        set({fetching: true});
+        let unGeoComputeJobs = {};
+        let lowLatStreamingJobs = {};
+        let migrationProcesses = {};
+        let resultCjs = {};
+        let resultLls = {};
+
+        // computeJob info
+        let computeJobInfoUrl = urlJoin(BACKEND_URL, "jobinfo")
+        // const response = await fetch(computeJobInfoUrl,{mode:"cors"});
+        // const data = await response.json();
+
+        resultCjs['Compute Job 1'] = {
+            "jobId": '12324234',
+            "createTime": "2024 03 23 16:40",
+            "phase": "running",
+            "scheduledPath": ["satellite 1", "satellite 2"],
+            "container": [
+                {"name": "Compute Job 1 Container", "imageName": "test_imageName", "fileName": "file_A", "nodeName": "custom1-sat-5-5"},
+            ]
+        };
+
+        resultCjs['Compute Job 2'] = {
+            "jobId": '4234234',
+            "createTime": "2024 03 23 16:40",
+            "phase": "running",
+            "image": "test_image",
+            "scheduledPath": ["satellite 1", "satellite 2"],
+            "container": [
+                {"name": "Compute Job 2 Container", "imageName": "test_image", "fileName": "file_B", "nodeName": "custom1-sat-3-2"},
+            ]
+        };
+
+
+
+        // lowLatStreamingJob info
+
+        console.log({resultCjs, resultLls})
+        set({unGeoComputeJobs: resultCjs, lowLatServiceJobs: resultLls, fetching: false});
+        console.log({unGeoComputeJobs, lowLatStreamingJobs, migrationProcesses});
+    },
+}));
+
 const useJobDataStore = create((set) => ({
     computeJobs: {},
     lowLatServiceJobs: {},
@@ -252,7 +303,6 @@ const useJobDataStore = create((set) => ({
         //     });
         //     job['pathNodes'] = pathNodeArray;
         // }
-        console.log({computeJobs, pods, lowLatServiceJobs, migrationprocesses});
         console.log({resultCjs, resultLls})
         set({computeJobs: resultCjs, lowLatServiceJobs: resultLls, fetching: false});
 
@@ -269,4 +319,4 @@ const useFocusSatellite = create((set) => ({
 }));
 
 export {useTabStatusStore, useClusterDataStore, useFocusSatellite, useJobDataStore
-,useNodeDataStore, useSatelliteDataStore}
+,useNodeDataStore, useSatelliteDataStore, useMyJobDataStore}
