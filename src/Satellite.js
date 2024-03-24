@@ -52,9 +52,10 @@ export default function Satellite(props) {
 
                         <br></br>
 
-                        <div><p className="font-bold">Time of Subpoint:</p>
+                        <div><p className="font-bold">Time:</p>
                             <div>
-                                <p className="times-new-roman">{currentSat.time}</p>
+                                <p className="times-new-roman">UTC Time: {currentSat.utc_time} </p>
+                                <p className="times-new-roman">Local Time: {currentSat.local_time}</p>
                             </div>
                         </div>
 
