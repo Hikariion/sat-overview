@@ -22,6 +22,7 @@ const CLUSTER_PEERMAN_URL = {
 
 const BACKEND_URL = "http://localhost:5000/"
 const satInfoUrl = urlJoin(BACKEND_URL, "satinfo")
+const streamJobInfoUrl = urlJoin(BACKEND_URL, "get_all_streaming_jobs")
 
 
 const POD_PATH = "/api/v1/namespaces/default/pods";
@@ -91,7 +92,8 @@ const useSatelliteDataStore = create((set) => ({
             name: satName,
             lat: data['lat'],
             lon: data['lon'],
-            time: data['time'],
+            local_time: data['local_time'],
+            utc_time: data['utc_time'],
             region_load: data['region_load']
         };
 
@@ -185,9 +187,25 @@ const useMyJobDataStore = create((set) => ({
 
 
         // lowLatStreamingJob info
+        const response2 = await fetch(streamJobInfoUrl,{mode:"cors"});
+        const data2 = await response2.json();
+
+        for (let jobs of Object.entries(data2)) {
+            for (let job of jobs) {
+                // console.log(job)
+                resultLls[job["stream_job_id"]] = {
+                    "stream_job_id": job["stream_job_id"],
+                    "submitTime": job["submit_utc_time_ts"],
+                    "submitLocation": "(" + job["submit_lat"] + ", " + job["submit_lon"] + ")",
+                    "phase": "running",
+                    "path": job["path"],
+                    "pathNodes": job["pathNode"]
+                }
+            }
+        }
 
         console.log({resultCjs, resultLls})
-        set({unGeoComputeJobs: resultCjs, lowLatServiceJobs: resultLls, fetching: false});
+        set({unGeoComputeJobs: resultCjs, lowLatStreamingJobs: resultLls, fetching: false});
         console.log({unGeoComputeJobs, lowLatStreamingJobs, migrationProcesses});
     },
 }));

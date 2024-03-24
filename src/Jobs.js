@@ -46,13 +46,13 @@ export default function Jobs(props) {
     const setFocusedSatellite = useFocusSatellite(state => state.focus);
 
     const unGeoComputeJobs = useMyJobDataStore(state => state.unGeoComputeJobs)
-
+    const lowLatStreamingJobs = useMyJobDataStore(state => state.lowLatStreamingJobs)
 
     const onPodButtonClick = (container) => {
         console.log(container)
         openWindow();
         setWindowInfo({
-            title: "Container Info: " + container.name,
+            title: "Container Info: ",
             content: () => {
                 return (
                     <div>
@@ -70,31 +70,25 @@ export default function Jobs(props) {
             }
         });
     }
-    const onPathNodeButtonClick = (pathNode, realNode) => {
+    const onPathNodeButtonClick = (realNode) => {
         openWindow();
-        console.log("pathNode", pathNode)
+        console.log("pathNode", realNode.path_node_name)
         setWindowInfo({
-            title: ("PathNode Info: " + pathNode.id),
+            title: ("PathNode Info: "),
             content: () => {
                 return (
                     <div>
-                        <div>Name: {pathNode.id}</div>
-                        <div>Begin Time: {pathNode.beginTime}</div>
-                        <div>End Time: {pathNode.endTime}</div>
-                        <div>Cluster: {pathNode.clusterId}</div>
-                        {realNode && (<div>Status: {realNode.status}</div>)}
-                        <div>Prefered Nodes:</div>
-                        {pathNode.preferedSatIds && <div className="flex flex-wrap">
-                            {(() => {
-                                return pathNode.preferedSatIds.map((id) => {
-                                    return (
-                                        <div key={id}>
-                                            <Button size='xs' onClick={() => setFocusedSatellite(id)}>{id}</Button>
-                                        </div>
-                                    );
-                                });
-                            })()}
-                        </div>}
+                        <div>Name: {realNode.path_node_name}</div>
+                        <div>Begin Time: {realNode.begin_time_str}</div>
+                        <div>End Time: {realNode.end_time_str}</div>
+                        {realNode.path_node_name && (() => {
+                            setFocusedSatellite(realNode.path_node_name)
+                            // return (
+                            //     <div>Node: {container.nodeName}</div>
+                            // );
+                        })()}
+                        {/*<div>Cluster: {pathNode.clusterId}</div>*/}
+                        {/*{realNode && (<div>Status: {realNode.status}</div>)}*/}
                     </div>
                 );
             }
@@ -111,7 +105,7 @@ export default function Jobs(props) {
         const containers = job.container.map((container) => {
             return (
                 <div key={container.name} >
-                    <Button size='xs' onClick={() => onPodButtonClick(container)}>{container.name}</Button>
+                    <Button size='xs' color='success' onClick={() => onPodButtonClick(container)}>Focus</Button>
                 </div>
             );
         });
@@ -123,54 +117,91 @@ export default function Jobs(props) {
                     <p>Phase: {job.phase}</p>
                     <p>Path: </p>
                     <div className="flex flex-wrap max-w-full"> {scheduledPath} </div>
-                    <p>Container: </p>
+                    <p>Operate: </p>
                     <div className="flex flex-wrap max-w-full"> {containers} </div>
                 </Card>
             </div>
         );
     });
 
-    const lowLatServiceJobInfo = Object.values(lowLatServiceJobs).map((job) => {
+    const lowLatServiceJobInfo = Object.values(lowLatStreamingJobs).map((job) => {
+        if (job.stream_job_id === "" || job.stream_job_id === undefined) {
+            return (<div></div>);
+        }
         if (job.path === undefined) {
             return (<div></div>);
         }
-        const pathNodes = job.path.map((node, index) => {
-            const realNode = job.pathNodes[index.toString()]
 
+
+
+        const pathNodes = Object.values(job.pathNodes).map((pathNode) => {
             return (
-                <div key={node.id}>
-                    {(() => {
-                        if (realNode === undefined) {
-                            return <Button size='xs' color="gray" onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-                        } else if (realNode.status === "Serving") {
-                            return <Button size='xs' color='success' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-                        } else if (realNode.status === "Warmup") {
-                            return <Button size='xs' color='warning' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-                        } else {
-                            return <Button size='xs' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-                        }
-                    })()}
+                <div key={pathNode.path_node_name}>
+                    <Button size='xs' onClick={() => onPathNodeButtonClick(pathNode)}>{pathNode.path_node_name}</Button>
                 </div>
             );
         });
-        const pods = job.pods.map((pod) => {
-            return (
-                <div key={pod.name} >
-                    <Button size='xs' onClick={() => onPodButtonClick(pod)}>{pod.name}</Button>
-                </div>
-            );
-        });
+
+
+        // const pathNodes = job.path.map((nodeName) => {
+        //     const realNode = job.pathNodes[nodeName]
+        //
+        //     return (
+        //         <div key={nodeName}>
+        //             {(() => {
+        //                 // if (realNode === undefined) {
+        //                 //     return <Button size='xs' color="gray" onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
+        //                 // } else if (realNode.status === "Serving") {
+        //                 //     return <Button size='xs' color='success' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
+        //                 // } else if (realNode.status === "Warmup") {
+        //                 //     return <Button size='xs' color='warning' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
+        //                 // } else {
+        //                 //     return <Button size='xs' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
+        //                 // }
+        //                 return <Button size='xs' onClick={() => onPathNodeButtonClick(nodeName, realNode)}>{nodeName}</Button>
+        //             })()}
+        //         </div>
+        //     )
+        //
+        // });
+
+        // const pathNodes = job.path.map((node, index) => {
+        //     const realNode = job.pathNodes[index.toString()]
+        //
+        //     return (
+        //         <div key={node.id}>
+        //             {(() => {
+        //                 if (realNode === undefined) {
+        //                     return <Button size='xs' color="gray" onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
+        //                 } else if (realNode.status === "Serving") {
+        //                     return <Button size='xs' color='success' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
+        //                 } else if (realNode.status === "Warmup") {
+        //                     return <Button size='xs' color='warning' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
+        //                 } else {
+        //                     return <Button size='xs' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
+        //                 }
+        //             })()}
+        //         </div>
+        //     );
+        // });
+        // const pods = job.pods.map((pod) => {
+        //     return (
+        //         <div key={pod.name} >
+        //             <Button size='xs' onClick={() => onPodButtonClick(pod)}>{pod.name}</Button>
+        //         </div>
+        //     );
+        // });
         return (
-            <div key={job.name}>
+            <div key={job.stream_job_id}>
                 <Card>
-                    <p>Name: {job.name}</p>
+                    <p>Job Id: {job.stream_job_id}</p>
                     <p>Submit Time: {job.submitTime}</p>
                     <p>Submit Location: {job.submitLocation}</p>
                     <p>Phase: {job.phase}</p>
                     <p>Path: </p>
-                    <div className="flex flex-wrap max-w-full"> {pathNodes}</div>
-                    <p>Pods: </p>
-                    <div className="flex flex-wrap max-w-full"> {pods}</div>
+                    <div className="flex flex-wrap max-w-full"> {pathNodes} </div>
+                    {/*<p>Pods: </p>*/}
+                    {/*<div className="flex flex-wrap max-w-full"> {pods}</div>*/}
                 </Card>
             </div>
         );
