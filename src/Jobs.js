@@ -79,8 +79,12 @@ export default function Jobs(props) {
                 return (
                     <div>
                         <div>Name: {realNode.path_node_name}</div>
-                        <div>Begin Time: {realNode.begin_time_str}</div>
-                        <div>End Time: {realNode.end_time_str}</div>
+                        <div>Begin Time: <br></br>
+                            {realNode.begin_time_str}
+                        </div>
+                        <div>End Time: <br></br>
+                            {realNode.end_time_str}
+                        </div>
                         {realNode.path_node_name && (() => {
                             setFocusedSatellite(realNode.path_node_name)
                             // return (
@@ -137,33 +141,21 @@ export default function Jobs(props) {
         const pathNodes = Object.values(job.pathNodes).map((pathNode) => {
             return (
                 <div key={pathNode.path_node_name}>
-                    <Button size='xs' onClick={() => onPathNodeButtonClick(pathNode)}>{pathNode.path_node_name}</Button>
+                    {(() => {
+                        if (pathNode.status === "finished") {
+                            return <Button size='xs' color="gray" onClick={() => onPathNodeButtonClick(pathNode)}>{pathNode.path_node_name}</Button>
+                        } else if (pathNode.status === "serving") {
+                            return <Button size='xs' color="success" onClick={() => onPathNodeButtonClick(pathNode)}>{pathNode.path_node_name}</Button>
+                        } else if (pathNode.status === "warming") {
+                            return <Button size='xs' color="warning" onClick={() => onPathNodeButtonClick(pathNode)}>{pathNode.path_node_name}</Button>
+                        } else {
+                            return <Button size='xs' onClick={() => onPathNodeButtonClick(pathNode)}>{pathNode.path_node_name}</Button>
+                        }
+                    })()}
+
                 </div>
             );
         });
-
-
-        // const pathNodes = job.path.map((nodeName) => {
-        //     const realNode = job.pathNodes[nodeName]
-        //
-        //     return (
-        //         <div key={nodeName}>
-        //             {(() => {
-        //                 // if (realNode === undefined) {
-        //                 //     return <Button size='xs' color="gray" onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-        //                 // } else if (realNode.status === "Serving") {
-        //                 //     return <Button size='xs' color='success' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-        //                 // } else if (realNode.status === "Warmup") {
-        //                 //     return <Button size='xs' color='warning' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-        //                 // } else {
-        //                 //     return <Button size='xs' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-        //                 // }
-        //                 return <Button size='xs' onClick={() => onPathNodeButtonClick(nodeName, realNode)}>{nodeName}</Button>
-        //             })()}
-        //         </div>
-        //     )
-        //
-        // });
 
         // const pathNodes = job.path.map((node, index) => {
         //     const realNode = job.pathNodes[index.toString()]
@@ -195,7 +187,7 @@ export default function Jobs(props) {
             <div key={job.stream_job_id}>
                 <Card>
                     <p>Job Id: {job.stream_job_id}</p>
-                    <p>Submit Time: {job.submitTime}</p>
+                    <p>Submit Time(UTC): {job.submitTime}</p>
                     <p>Submit Location: {job.submitLocation}</p>
                     <p>Phase: {job.phase}</p>
                     <p>Path: </p>
