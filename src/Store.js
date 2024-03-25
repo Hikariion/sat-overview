@@ -2,10 +2,9 @@ import {create} from 'zustand'
 import urlJoin from "url-join";
 
 
-
-
 const BACKEND_URL = "http://localhost:5000/"
 const satInfoUrl = urlJoin(BACKEND_URL, "satinfo")
+const computeJobInfoUrl = urlJoin(BACKEND_URL, "get_all_job_info")
 const streamJobInfoUrl = urlJoin(BACKEND_URL, "get_all_streaming_jobs")
 
 
@@ -72,7 +71,6 @@ const useSatelliteDataStore = create((set) => ({
         };
 
         set({satellite})
-
     },
 
 }));
@@ -91,30 +89,22 @@ const useMyJobDataStore = create((set) => ({
         let resultLls = {};
 
         // computeJob info
-        let computeJobInfoUrl = urlJoin(BACKEND_URL, "jobinfo")
-        // const response = await fetch(computeJobInfoUrl,{mode:"cors"});
-        // const data = await response.json();
+        const response1 = await fetch(computeJobInfoUrl,{mode:"cors"});
+        const data1 = await response1.json();
 
-        resultCjs['Compute Job 1'] = {
-            "jobId": '12324234',
-            "createTime": "2024 03 23 16:40",
-            "phase": "running",
-            "scheduledPath": ["satellite 1", "satellite 2"],
-            "container": [
-                {"name": "Compute Job 1 Container", "imageName": "test_imageName", "fileName": "file_A", "nodeName": "custom1-sat-5-5"},
-            ]
-        };
 
-        resultCjs['Compute Job 2'] = {
-            "jobId": '4234234',
-            "createTime": "2024 03 23 16:40",
-            "phase": "running",
-            "image": "test_image",
-            "scheduledPath": ["satellite 1", "satellite 2"],
-            "container": [
-                {"name": "Compute Job 2 Container", "imageName": "test_image", "fileName": "file_B", "nodeName": "custom1-sat-3-2"},
-            ]
-        };
+        for (let [key, job] of Object.entries(data1)) {
+            let containers = []
+            containers.push(job["container"])
+
+            resultCjs[job["job_id"]] = {
+                "jobId": job["job_id"],
+                "createTime": job["create_time"],
+                "phase": job["phase"],
+                "scheduledPath": job["scheduled_path"],
+                "container": containers
+            }
+        }
 
 
 

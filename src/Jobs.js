@@ -54,13 +54,13 @@ export default function Jobs(props) {
             content: () => {
                 return (
                     <div>
-                        <div>Name: {container.name}</div>
-                        <div>ImageName: {container.imageName}</div>
-                        <div>FileName: {container.fileName}</div>
-                        {container.nodeName && (() => {
-                            setFocusedSatellite(container.nodeName)
+                        <div>Name: {container.container_name}</div>
+                        <div>ImageName: {container.image_name}</div>
+                        <div>FileName: {container.file_name}</div>
+                        {container.node_name && (() => {
+                            setFocusedSatellite(container.node_name)
                             return (
-                                <div>Node: {container.nodeName}</div>
+                                <div>Node: {container.node_name}</div>
                             );
                         })()}
                     </div>
