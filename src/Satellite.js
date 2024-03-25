@@ -1,13 +1,10 @@
 import { useEffect } from "react";
-import {useFocusSatellite, useNodeDataStore, useSatelliteDataStore} from "./Store";
-import { Button } from "flowbite-react";
+import {useFocusSatellite, useSatelliteDataStore} from "./Store";
 
 export default function Satellite(props) {
 
 
     const focusedSatellite = useFocusSatellite(state => state.focusedSatellite);
-    const currentNode = useNodeDataStore(state => state.node);
-    const fetchNode = useNodeDataStore(state => state.fetchNode);
     const currentSat = useSatelliteDataStore(state => state.satellite)
     const fetchSatByName = useSatelliteDataStore(state => state.fetchSatByName)
 

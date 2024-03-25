@@ -1,7 +1,7 @@
 import { Accordion, Button, Card, Spinner } from "flowbite-react";
-import {useJobDataStore, useClusterDataStore, useFocusSatellite, useMyJobDataStore} from "./Store";
+import { useFocusSatellite, useMyJobDataStore} from "./Store";
 import { HiX } from "react-icons/hi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { create } from "zustand";
 
 const useWindowToggle = create((set) => ({
@@ -37,9 +37,7 @@ export default function Jobs(props) {
 
     // const fetchJobData = useJobDataStore(state => state.fetch);
     const fetchJobData = useMyJobDataStore(state => state.fetch)
-    const fetching = useJobDataStore(state => state.fetching);
-    const computeJobs = useJobDataStore(state => state.computeJobs);
-    const lowLatServiceJobs = useJobDataStore(state => state.lowLatServiceJobs);
+    const fetching = useMyJobDataStore(state => state.fetching);
     const show = useWindowToggle(state => state.show);
     const openWindow = useWindowToggle(state => state.open);
     const [windowInfo, setWindowInfo] = useState({});
@@ -157,32 +155,6 @@ export default function Jobs(props) {
             );
         });
 
-        // const pathNodes = job.path.map((node, index) => {
-        //     const realNode = job.pathNodes[index.toString()]
-        //
-        //     return (
-        //         <div key={node.id}>
-        //             {(() => {
-        //                 if (realNode === undefined) {
-        //                     return <Button size='xs' color="gray" onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-        //                 } else if (realNode.status === "Serving") {
-        //                     return <Button size='xs' color='success' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-        //                 } else if (realNode.status === "Warmup") {
-        //                     return <Button size='xs' color='warning' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-        //                 } else {
-        //                     return <Button size='xs' onClick={() => onPathNodeButtonClick(node, realNode)}>{node.id}</Button>
-        //                 }
-        //             })()}
-        //         </div>
-        //     );
-        // });
-        // const pods = job.pods.map((pod) => {
-        //     return (
-        //         <div key={pod.name} >
-        //             <Button size='xs' onClick={() => onPodButtonClick(pod)}>{pod.name}</Button>
-        //         </div>
-        //     );
-        // });
         return (
             <div key={job.stream_job_id}>
                 <Card>
