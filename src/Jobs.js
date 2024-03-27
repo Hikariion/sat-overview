@@ -100,23 +100,38 @@ export default function Jobs(props) {
         const scheduledPath = job.scheduledPath.map((cluster, index) => {
             return (
                 <div key={job.name + cluster + index.toString()} >
-                    <Button size='xs'>{cluster}</Button>
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                        {cluster}
+                    </span>
                 </div>
             );
         });
         const containers = job.container.map((container) => {
             return (
-                <div key={container.name} >
-                    <Button size='xs' color='success' onClick={() => onPodButtonClick(container)}>Focus</Button>
+                <div key={container.name}>
+                <Button size='xs' color='success' onClick={() => onPodButtonClick(container)}>Focus</Button>
                 </div>
             );
         });
         return (
             <div key={job.name}>
                 <Card>
+                    <p>Job Name: {job.jobName}</p>
                     <p>Job Id: {job.jobId}</p>
                     <p>Create Time(UTC): {job.createTime}</p>
-                    <p>Phase: {job.phase}</p>
+                    <div>
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                            job.phase === 'pending'
+                            ? 'bg-gray-100 text-gray-800' // 灰色
+                            : job.phase === 'running'
+                            ? 'bg-red-100 text-red-800' // 浅红色
+                            : job.phase === 'completed'
+                            ? 'bg-green-100 text-green-800' // 浅绿色
+                            : 'bg-blue-100 text-blue-800' // 默认颜色
+                        }`}>
+                            {job.phase}
+                    </span>
+                    </div>
                     <p>Path: </p>
                     <div className="flex flex-wrap max-w-full"> {scheduledPath} </div>
                     <p>Operate: </p>

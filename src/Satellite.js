@@ -41,6 +41,14 @@ export default function Satellite(props) {
             {focusedSatellite !== "" && (() => {
                 return (
                     <div>
+                        <div><p className="font-bold">Cluster</p>
+                            <div>
+                                <p className="times-new-roman">{currentSat.cluster}</p>
+                            </div>
+                        </div>
+
+                        <br></br>
+
                         <div><p className="font-bold">Subpoint Coordinate:</p>
                             <div>
                                 <p className="times-new-roman">({currentSat.lat}, {currentSat.lon})</p>

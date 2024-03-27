@@ -67,7 +67,8 @@ const useSatelliteDataStore = create((set) => ({
             lon: data['lon'],
             local_time: data['local_time'],
             utc_time: data['utc_time'],
-            region_load: data['region_load']
+            region_load: data['region_load'],
+            cluster: data['cluster']
         };
 
         set({satellite})
@@ -98,6 +99,7 @@ const useMyJobDataStore = create((set) => ({
             containers.push(job["container"])
 
             resultCjs[job["job_id"]] = {
+                "jobName": job["job_name"],
                 "jobId": job["job_id"],
                 "createTime": job["create_time"],
                 "phase": job["phase"],
