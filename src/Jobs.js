@@ -132,7 +132,7 @@ export default function Jobs(props) {
                             job.phase === 'pending'
                             ? 'bg-gray-100 text-gray-800' // 灰色
                             : job.phase === 'running'
-                            ? 'bg-red-100 text-red-800' // 浅红色
+                            ? 'bg-orange-100 text-orange-800' // 浅橘色
                             : job.phase === 'completed'
                             ? 'bg-green-100 text-green-800' // 浅绿色
                             : 'bg-blue-100 text-blue-800' // 默认颜色
