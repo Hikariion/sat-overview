@@ -1,7 +1,7 @@
-import { Accordion, Button, Card, Spinner } from "flowbite-react";
+import { Accordion, Button, Card, Spinner, ToggleSwitch } from "flowbite-react";
 import { useFocusSatellite, useMyJobDataStore} from "./Store";
 import { HiX } from "react-icons/hi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { create } from "zustand";
 
 const useWindowToggle = create((set) => ({
@@ -45,6 +45,14 @@ export default function Jobs(props) {
 
     const unGeoComputeJobs = useMyJobDataStore(state => state.unGeoComputeJobs)
     const lowLatStreamingJobs = useMyJobDataStore(state => state.lowLatStreamingJobs)
+
+    const [showAllJob, setShowAllJob] = useState(false);
+
+
+    useEffect(() => {
+        fetchJobData(showAllJob)
+        console.log(`Show all jobs is now: ${showAllJob}`);
+    }, [showAllJob]);
 
     const onPodButtonClick = (container) => {
         console.log(container)
@@ -190,10 +198,15 @@ export default function Jobs(props) {
         <div className="max-h-full w-full h-full overflow-y-auto overflow-x-hidden">
             <InfoWindow show={show} {...windowInfo} />
             <div className="flex flex-row max-w-full justify-between">
-                <Button onClick={() => fetchJobData()}>
+                <Button onClick={() => fetchJobData(showAllJob)}>
                     Refresh
                 </Button>
                 {fetching && <Spinner />}
+            </div>
+            <br></br>
+            <div>
+
+                <ToggleSwitch checked={showAllJob} label="Show All Jobs" onChange={setShowAllJob} />
             </div>
             <Accordion flush={true} collapseAll={true}>
                 <Accordion.Panel>
