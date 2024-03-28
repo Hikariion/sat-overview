@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 
 function ClusterInfoAccordion(props) {
 
-    const {name, url, central, satellites, peerClusters} = props.info;
+    const {name, central, satellites} = props.info;
     const setFocusedSatellite = useFocusSatellite(state => state.focus);
     const [satelliteButtons, setSatelliteButtons] = useState([]);
     const [peerClustersButtons, setPeerClustersButtons] = useState([]);
@@ -25,15 +25,6 @@ function ClusterInfoAccordion(props) {
                 <div key={satellite.name}>
                     <Button size='sm' onClick={() => setFocusedSatellite(satellite.name)}>
                        ({satellite.plane},{satellite.index})
-                    </Button>
-                </div>
-            )
-        }));
-        setPeerClustersButtons(peerClusters.map((peerCluster) => {
-            return (
-                <div key={peerCluster.clusterId}>
-                    <Button size='sm'>
-                       {peerCluster.clusterId}
                     </Button>
                 </div>
             )
