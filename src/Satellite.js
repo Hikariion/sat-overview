@@ -1,61 +1,90 @@
 import { useEffect } from "react";
-import { useFocusSatellite, useNodeDataStore } from "./Store";
-import { Button } from "flowbite-react";
+import {useFocusSatellite, useSatelliteDataStore} from "./Store";
 
 export default function Satellite(props) {
 
 
     const focusedSatellite = useFocusSatellite(state => state.focusedSatellite);
-    const currentNode = useNodeDataStore(state => state.node);
-    const fetchNode = useNodeDataStore(state => state.fetchNode);
+    const currentSat = useSatelliteDataStore(state => state.satellite)
+    const fetchSatByName = useSatelliteDataStore(state => state.fetchSatByName)
+
 
     useEffect(() => {
         if (focusedSatellite) {
-            fetchNode(focusedSatellite);
+            fetchSatByName(focusedSatellite);
         }
+
+        const intervalId = setInterval(() => {
+            if (focusedSatellite) {
+                fetchSatByName(focusedSatellite);
+            }
+        }, 1000); // 1000 ms is equal to 1 second
+
+        // Clear interval on component unmount or if the dependency changes
+        return () => clearInterval(intervalId);
     }, [focusedSatellite]);
+
     // show pods in this satellite
     return (
         <div>
-            <div>Satellite: {focusedSatellite}</div>
+            <div>
+                <div>
+                    <p className="font-bold">Satellite ID：</p>
+                    <div>
+                        <p className="times-new-roman">{focusedSatellite}</p>
+                    </div>
+                </div>
+            </div>
+
+            <br></br>
+
             {focusedSatellite !== "" && (() => {
                 return (
                     <div>
-                        <div><p className="font-bold">allocatable:</p>
+                        <div><p className="font-bold">Cluster</p>
                             <div>
-                                cpu: {currentNode.allocatable && currentNode.allocatable.cpu} mCPU
-                            </div>
-                            <div>
-                                mem: {currentNode.allocatable && (currentNode.allocatable.memory / 1024)} MB
+                                <p className="times-new-roman">{currentSat.cluster}</p>
                             </div>
                         </div>
-                        <div><p className="font-bold">request:</p>
+
+                        <br></br>
+
+                        <div><p className="font-bold">Subpoint Coordinate:</p>
                             <div>
-                                cpu: {currentNode.request && currentNode.request.cpu} mCPU
-                            </div>
-                            <div>
-                                mem: {currentNode.request && (currentNode.request.memory / 1024)} MB
-                            </div>
-                        </div>
-                        <div><p className="font-bold">limit:</p>
-                            <div>
-                                cpu: {currentNode.limit && currentNode.limit.cpu} mCPU
-                            </div>
-                            <div>
-                                mem: {currentNode.limit && (currentNode.limit.memory / 1024)} MB
+                                <p className="times-new-roman">({currentSat.lat}, {currentSat.lon})</p>
                             </div>
                         </div>
-                        <div><p className="font-bold">Pods:</p>
-                            {currentNode.pods && (() => {
-                                return currentNode.pods.map((pod) => {
-                                    return (
-                                        <div>
-                                            <Button>{pod.name}</Button>
-                                        </div>
-                                    );
-                                })
-                            })()}
+
+                        <br></br>
+
+                        <div><p className="font-bold">Time:</p>
+                            <div>
+                                <p className="times-new-roman">UTC Time: {currentSat.utc_time} </p>
+                                <p className="times-new-roman">Local Time: {currentSat.local_time}</p>
+                            </div>
                         </div>
+
+                        <br></br>
+
+                        <div><p className="font-bold">Predicted Load Value:</p>
+                            <div>
+                                <p className="times-new-roman">{currentSat.region_load}</p>
+                            </div>
+                        </div>
+
+                        <br></br>
+
+                        {/*<div><p className="font-bold">Pods:</p>*/}
+                        {/*    {currentNode.pods && (() => {*/}
+                        {/*        return currentNode.pods.map((pod) => {*/}
+                        {/*            return (*/}
+                        {/*                <div>*/}
+                        {/*                    <Button>{pod.name}</Button>*/}
+                        {/*                </div>*/}
+                        {/*            );*/}
+                        {/*        })*/}
+                        {/*    })()}*/}
+                        {/*</div>*/}
                     </div>
 
                 );

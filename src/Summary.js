@@ -1,6 +1,7 @@
 import { Accordion, Card, Button } from "flowbite-react";
 import { useClusterDataStore, useFocusSatellite } from "./Store";
 import { useEffect, useMemo, useState } from "react";
+import { Checkbox } from 'antd';
 
 function ClusterInfoAccordion(props) {
 
@@ -8,6 +9,16 @@ function ClusterInfoAccordion(props) {
     const setFocusedSatellite = useFocusSatellite(state => state.focus);
     const [satelliteButtons, setSatelliteButtons] = useState([]);
     const [peerClustersButtons, setPeerClustersButtons] = useState([]);
+
+    // State to track the checkbox status
+    const [isChecked, setIsChecked] = useState(false);
+
+    // Handle checkbox change
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
+    };
+
+
     
     useEffect(() => {
         setSatelliteButtons(satellites.map((satellite) => {
@@ -46,14 +57,16 @@ function ClusterInfoAccordion(props) {
     return (
         <Accordion key={name} flush={true} collapseAll={true}>
             <Accordion.Panel>
-                <Accordion.Title>{name}</Accordion.Title>
+                <Accordion.Title>
+                    <div>
+
+                        {name}
+                    </div>
+                </Accordion.Title>
                 <Accordion.Content>
-                    <p>URL: {url}</p>
                     <p>Central: {central}</p>
                     <p>Satellites:</p>
                     <div className="w-full">{satelliteButtonGroup}</div>
-                    <p>Peer Clusters:</p>
-                    <div className="w-full">{peerClusterButtonGroup}</div>
                 </Accordion.Content>
             </Accordion.Panel>
 
@@ -85,13 +98,22 @@ export default function Summary(props) {
         );
     });
 
+    const CheckCluster = clusterInfo.map((cluster) => {
+        return (
+            <Checkbox >{cluster.name}</Checkbox>
+        )
+    })
+
     return (
         <div className="max-h-full w-full h-full overflow-y-auto">
-        <Card className="w-full h-20 my-3">
-            Cluster Status
-        </Card>
 
-        {clusterInfoAccordion}
+            <Card className="w-full h-20 my-3">
+                Cluster Status
+            </Card>
+
+            {/*{CheckCluster}*/}
+
+            {clusterInfoAccordion}
         </div>
     );
 }

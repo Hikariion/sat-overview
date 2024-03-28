@@ -27,20 +27,20 @@ export default function Viewboard(props) {
       >
         <Tabs.Item
           active={true}
-          title="Summary"
+          title="Cluster Info"
           className='p-0'
         >
          <Summary />
 
         </Tabs.Item>
-        <Tabs.Item title="Jobs">
+        <Tabs.Item title="Job Info">
           <Jobs />
         </Tabs.Item>
-        <Tabs.Item title="Satellites">
+        <Tabs.Item title="Satellite Info">
           <Satellite />
         </Tabs.Item>
         <Tabs.Item title="About">
-          Created by zbw.
+          Edited by Qiutb.
         </Tabs.Item>
       </Tabs.Group>
     </div>
