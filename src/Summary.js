@@ -1,7 +1,6 @@
 import { Accordion, Card, Button, Dropdown} from "flowbite-react";
-import { useClusterDataStore, useFocusSatellite } from "./Store";
+import {useClusterDataStore, useFocusSatellite, useSatelliteNamesToDisplay} from "./Store";
 import { useEffect, useMemo, useState } from "react";
-import { Checkbox } from 'antd';
 
 function ClusterInfoAccordion(props) {
 
@@ -80,7 +79,10 @@ export default function Summary(props) {
     const peerRelation = useClusterDataStore(state => state.peerRelation);
 
     // 状态用于跟踪选中的集群名称
-    const [selectedClusterName, setSelectedClusterName] = useState("All Cluster");
+    const [selectedClusterName, setSelectedClusterName] = useState("All Clusters");
+
+    const setSatelliteNameToDisplay = useSatelliteNamesToDisplay(state => state.setSatelliteNamesToDisplay)
+    const satelliteNamesToDisplay = useSatelliteNamesToDisplay(state => state.satelliteNamesToDisplay)
 
     const clusterInfo = useMemo(() => {
         if (!clusterData || !peerRelation) return [];
@@ -97,12 +99,33 @@ export default function Summary(props) {
 
     // 根据 selectedClusterName 筛选 clusterInfo
     const filteredClusterInfo = useMemo(() => {
+        let satelliteNames = [];
+
         // 如果 selectedClusterName 是 "All Clusters"，则不进行筛选，返回所有集群信息
         if (selectedClusterName === "All Clusters") {
+            console.log(clusterInfo)
+            clusterInfo.forEach(cluster => {
+                cluster.satellites.forEach(satellite => {
+                    satelliteNames.push(satellite.name);
+                });
+            });
+            setSatelliteNameToDisplay(satelliteNames)
             return clusterInfo;
         }
         // 否则，只返回匹配 selectedClusterName 的集群信息
-        return clusterInfo.filter(cluster => cluster.name === selectedClusterName);
+        let selectedCluster = clusterInfo.filter(cluster => cluster.name === selectedClusterName);
+
+        if (selectedCluster.length > 0) {
+            selectedCluster[0].satellites.forEach(satellite => {
+                satelliteNames.push(satellite.name);
+            });
+        }
+
+        setSatelliteNameToDisplay(satelliteNames)
+        console.log(satelliteNames)
+        console.log(selectedCluster)
+
+        return selectedCluster;
     }, [clusterInfo, selectedClusterName]); // 依赖项包括 clusterInfo 和 selectedClusterName
 
     const chooseClusterDropdown = (

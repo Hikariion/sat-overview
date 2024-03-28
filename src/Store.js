@@ -207,4 +207,11 @@ const useFocusSatellite = create((set) => ({
     },
 }));
 
-export {useTabStatusStore, useClusterDataStore, useFocusSatellite, useSatelliteDataStore, useMyJobDataStore}
+const useSatelliteNamesToDisplay = create((set) => ({
+    satelliteNamesToDisplay: [],
+    setSatelliteNamesToDisplay: (satelliteNames) => {
+        set({satelliteNamesToDisplay: satelliteNames})
+    }
+}));
+
+export {useTabStatusStore, useClusterDataStore, useFocusSatellite, useSatelliteDataStore, useMyJobDataStore, useSatelliteNamesToDisplay}

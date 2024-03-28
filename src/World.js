@@ -3,7 +3,7 @@ import ReactResizeDetector from 'react-resize-detector';
 import Globe from "react-globe.gl";
 import * as THREE from 'three';
 import {twoline2satrec, propagate, gstime, eciToEcf, eciToGeodetic, radiansToDegrees} from 'satellite.js';
-import {useFocusSatellite, useTabStatusStore} from './Store';
+import {useFocusSatellite, useSatelliteNamesToDisplay, useTabStatusStore} from './Store';
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 
 const EARTH_RADIUS_KM = 6371; // km
@@ -22,6 +22,8 @@ export default function World(props) {
     const setFocusedSatellite = useFocusSatellite(state => state.focus);
     const [time, setTime] = useState(new Date());
     const setActiveTab = useTabStatusStore(state => state.setActiveTab);
+
+    const satelliteNamesToDisplay = useSatelliteNamesToDisplay(state => state.satelliteNamesToDisplay)
 
     useEffect(() => {
       let t = new Date();
@@ -55,12 +57,13 @@ export default function World(props) {
         }))
         // exclude those that can't be propagated
         .filter(d => !!propagate(d.satrec, new Date()).position)
+            .filter(d => satelliteNamesToDisplay.includes(d.name))
         .slice(0, 1500);
         setSatInfo(satData.map(d => d.name));
         setSatData(satData);
         
       });
-    }, []);
+    }, [satelliteNamesToDisplay]);
 
     const objectsData = useMemo(() => {
       if (!satData) return [];
