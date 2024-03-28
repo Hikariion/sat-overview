@@ -81,8 +81,10 @@ const useMyJobDataStore = create((set) => ({
     unGeoComputeJobs: {},
     lowLatStreamingJobs: {},
 
-    fetch: async() => {
+    fetch: async(showAllJob) => {
         set({fetching: true});
+        console.log("show All Job")
+        console.log(showAllJob)
         let unGeoComputeJobs = {};
         let lowLatStreamingJobs = {};
         let migrationProcesses = {};
@@ -95,6 +97,11 @@ const useMyJobDataStore = create((set) => ({
 
 
         for (let [key, job] of Object.entries(data1)) {
+            if (!showAllJob) {
+                if (job["phase"] === "completed") {
+                    continue
+                }
+            }
             let containers = []
             containers.push(job["container"])
 
@@ -107,8 +114,6 @@ const useMyJobDataStore = create((set) => ({
                 "container": containers
             }
         }
-
-
 
         // lowLatStreamingJob info
 
