@@ -1,4 +1,4 @@
-import { Accordion, Card, Button } from "flowbite-react";
+import { Accordion, Card, Button, Dropdown} from "flowbite-react";
 import { useClusterDataStore, useFocusSatellite } from "./Store";
 import { useEffect, useMemo, useState } from "react";
 import { Checkbox } from 'antd';
@@ -79,6 +79,9 @@ export default function Summary(props) {
     const clusterData = useClusterDataStore(state => state.clusterData);
     const peerRelation = useClusterDataStore(state => state.peerRelation);
 
+    // 状态用于跟踪选中的集群名称
+    const [selectedClusterName, setSelectedClusterName] = useState("All Cluster");
+
     const clusterInfo = useMemo(() => {
         if (!clusterData || !peerRelation) return [];
         return clusterData.map((cluster) => {
@@ -92,17 +95,37 @@ export default function Summary(props) {
         });
     }, [clusterData, peerRelation]);
 
-    const clusterInfoAccordion = clusterInfo.map((cluster) => {
-        return (
-            <ClusterInfoAccordion key={cluster.name} info={cluster} />
-        );
-    });
+    // 根据 selectedClusterName 筛选 clusterInfo
+    const filteredClusterInfo = useMemo(() => {
+        // 如果 selectedClusterName 是 "All Clusters"，则不进行筛选，返回所有集群信息
+        if (selectedClusterName === "All Clusters") {
+            return clusterInfo;
+        }
+        // 否则，只返回匹配 selectedClusterName 的集群信息
+        return clusterInfo.filter(cluster => cluster.name === selectedClusterName);
+    }, [clusterInfo, selectedClusterName]); // 依赖项包括 clusterInfo 和 selectedClusterName
 
-    const CheckCluster = clusterInfo.map((cluster) => {
-        return (
-            <Checkbox >{cluster.name}</Checkbox>
-        )
-    })
+    const chooseClusterDropdown = (
+        <Dropdown label={selectedClusterName} dismissOnClick={true}>
+            <Dropdown.Item
+                onClick={() => setSelectedClusterName("All Clusters")}
+            >
+                All Clusters
+            </Dropdown.Item>
+            {clusterInfo.map((cluster) => (
+                <Dropdown.Item
+                    key={cluster.name}
+                    onClick={() => setSelectedClusterName(cluster.name)}
+                >
+                    {cluster.name}
+                </Dropdown.Item>
+            ))}
+        </Dropdown>
+    );
+
+    const clusterInfoAccordion = filteredClusterInfo.map((cluster) => (
+        <ClusterInfoAccordion key={cluster.name} info={cluster} />
+    ));
 
     return (
         <div className="max-h-full w-full h-full overflow-y-auto">
@@ -111,7 +134,7 @@ export default function Summary(props) {
                 Cluster Status
             </Card>
 
-            {/*{CheckCluster}*/}
+            {chooseClusterDropdown}
 
             {clusterInfoAccordion}
         </div>
