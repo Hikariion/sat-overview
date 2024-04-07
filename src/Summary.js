@@ -7,18 +7,8 @@ function ClusterInfoAccordion(props) {
     const {name, central, satellites} = props.info;
     const setFocusedSatellite = useFocusSatellite(state => state.focus);
     const [satelliteButtons, setSatelliteButtons] = useState([]);
-    const [peerClustersButtons, setPeerClustersButtons] = useState([]);
-
-    // State to track the checkbox status
-    const [isChecked, setIsChecked] = useState(false);
-
-    // Handle checkbox change
-    const handleCheckboxChange = (event) => {
-        setIsChecked(event.target.checked);
-    };
 
 
-    
     useEffect(() => {
         setSatelliteButtons(satellites.map((satellite) => {
             return (
@@ -37,12 +27,6 @@ function ClusterInfoAccordion(props) {
             {satelliteButtons}
         </div>
     );
-    const peerClusterButtonGroup = (
-        <div className="flex flex-wrap gap-1 max-w-full overflow-x-hidden">
-            {peerClustersButtons}
-        </div>
-    );
-
 
     return (
         <Accordion key={name} flush={true} collapseAll={true}>
@@ -67,26 +51,23 @@ function ClusterInfoAccordion(props) {
 export default function Summary(props) {
 
     const clusterData = useClusterDataStore(state => state.clusterData);
-    const peerRelation = useClusterDataStore(state => state.peerRelation);
 
     // 状态用于跟踪选中的集群名称
     const [selectedClusterName, setSelectedClusterName] = useState("All Clusters");
 
     const setSatelliteNameToDisplay = useSatelliteNamesToDisplay(state => state.setSatelliteNamesToDisplay)
-    const satelliteNamesToDisplay = useSatelliteNamesToDisplay(state => state.satelliteNamesToDisplay)
 
     const clusterInfo = useMemo(() => {
-        if (!clusterData || !peerRelation) return [];
+        if (!clusterData) return [];
         return clusterData.map((cluster) => {
             return {
                 name: cluster.name,
                 url: cluster.url,
                 central: cluster.central,
                 satellites: cluster.satellites,
-                peerClusters: peerRelation[cluster.name],
             };
         });
-    }, [clusterData, peerRelation]);
+    }, [clusterData]);
 
     // 根据 selectedClusterName 筛选 clusterInfo
     const filteredClusterInfo = useMemo(() => {

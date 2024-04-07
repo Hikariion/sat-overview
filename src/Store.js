@@ -15,7 +15,6 @@ const useTabStatusStore = create((set) => ({
 
 const useClusterDataStore = create((set, get) => ({
     clusterData: [],
-    peerRelation: {},
     nodeNames: {},
     nodeToCluster: {},
     fetch: async (url) => {
@@ -23,7 +22,7 @@ const useClusterDataStore = create((set, get) => ({
         const response = await fetch(url,{mode:"cors"});
         const data = await response.json();
         console.log(data)
-        set({clusterData: Object.values(data["clusters"]), peerRelation: data["peerRelations"]})
+        set({clusterData: Object.values(data["clusters"])})
     },
     fetchNodeNames: async (url) => {
         const response1 = await fetch(url,{mode:"cors"});
