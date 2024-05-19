@@ -181,17 +181,28 @@ const useMyJobDataStore = create((set) => ({
 
         for (let [key, job] of Object.entries(data2)) {
             if (!showAllJob) {
-                // 转换提交时间字符串为 Date 对象
-                const submitTime = new Date(job["submit_utc_time_str"]);
-                const currentTime = new Date();
+                const submitTime = new Date(job["submit_utc_time_str"] + 'Z');
+                // 获取当前时间，并转换为 UTC 时间
+                const now = new Date();
+                const currentTime = new Date(Date.UTC(
+                    now.getUTCFullYear(),
+                    now.getUTCMonth(),
+                    now.getUTCDate(),
+                    now.getUTCHours(),
+                    now.getUTCMinutes(),
+                    now.getUTCSeconds()
+                ));
                 const halfHour = 30 * 60 * 1000; // 半小时的毫秒数
 
                 // 比较当前时间与提交时间的差值
                 if (currentTime - submitTime > halfHour) {
+                    console.log(job["submit_utc_time_str"])
+                    console.log(submitTime)
+                    console.log(currentTime)
                     continue;  // 如果大于半小时，则跳过当前迭代
                 }
             }
-            // console.log(job)
+        //     // console.log(job)
             resultLls[job["stream_job_id"]] = {
                 "stream_job_id": job["stream_job_id"],
                 "submitTime": job["submit_utc_time_str"],
