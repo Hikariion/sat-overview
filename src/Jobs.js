@@ -117,7 +117,7 @@ export default function Jobs(props) {
         const containers = job.container.map((container) => {
             return (
                 <div key={container.name}>
-                <Button size='xs' color='success' onClick={() => onPodButtonClick(container)}>Focus</Button>
+                <Button size='xs' color='success' onClick={() => onPodButtonClick(container)}>Detail</Button>
                 </div>
             );
         });
@@ -140,9 +140,8 @@ export default function Jobs(props) {
                             {job.phase}
                     </span>
                     </div>
-                    <p>Path: </p>
-                    <div className="flex flex-wrap max-w-full"> {scheduledPath} </div>
-                    <p>Operate: </p>
+                    {/*<p>Path: </p>*/}
+                    {/*<div className="flex flex-wrap max-w-full"> {scheduledPath} </div>*/}
                     <div className="flex flex-wrap max-w-full"> {containers} </div>
                 </Card>
             </div>

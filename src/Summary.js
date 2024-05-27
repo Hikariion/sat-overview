@@ -38,7 +38,6 @@ function ClusterInfoAccordion(props) {
                     </div>
                 </Accordion.Title>
                 <Accordion.Content>
-                    <p>Central: {central}</p>
                     <p>Satellites:</p>
                     <div className="w-full">{satelliteButtonGroup}</div>
                 </Accordion.Content>
